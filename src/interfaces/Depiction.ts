@@ -1,4 +1,4 @@
-export interface Depiction {
+export interface IDepiction {
   depictionId: number,
   caption: string,
   figureLabel: string,

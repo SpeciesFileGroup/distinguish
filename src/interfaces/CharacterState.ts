@@ -1,4 +1,4 @@
-export interface CharacterState {
+export interface ICharacterState {
   characterStateId: number,
   label: string,
   name: string,

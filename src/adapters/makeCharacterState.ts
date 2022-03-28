@@ -1,4 +1,4 @@
-import { CharacterState } from "../interfaces"
+import { ICharacterState } from "../interfaces"
 
 export const makeCharacterState = (data: any): CharacterState => ({
   characterStateId: data.id,

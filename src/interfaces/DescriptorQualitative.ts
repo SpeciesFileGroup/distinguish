@@ -1,6 +1,6 @@
-import { Descriptor } from './Descriptor'
-import { CharacterState } from './CharacterState'
+import { IDescriptor } from './Descriptor'
+import { ICharacterState } from './CharacterState'
 
-export interface DescriptorQualitative extends Descriptor {
-  characterStates: Array<CharacterState>,
+export interface IDescriptorQualitative extends IDescriptor {
+  characterStates: Array<ICharacterState>,
 }

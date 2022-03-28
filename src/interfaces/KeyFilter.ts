@@ -1,4 +1,4 @@
-export interface KeyFilter {
+export interface IKeyFilter {
   eliminateUknown?: undefined,
   error_tolerance?: undefined,
   identifiedToRank?: undefined,

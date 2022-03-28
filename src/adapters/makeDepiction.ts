@@ -1,4 +1,4 @@
-import { Depiction } from "../interfaces"
+import { IDepiction } from "../interfaces"
 
 export const makeDescriptor = (data: any): Depiction => ({
   depictionId: data.id,

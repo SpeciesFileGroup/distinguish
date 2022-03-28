@@ -1,4 +1,4 @@
-export interface ObservationMatrix {
+export interface IObservationMatrix {
   citation: {
     author: string | undefined,
     label: string | undefined,

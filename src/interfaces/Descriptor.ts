@@ -1,4 +1,4 @@
-export interface Descriptor {
+export interface IDescriptor {
   depictionIds: Array<number>,
   description: string,
   descriptorId: number,
