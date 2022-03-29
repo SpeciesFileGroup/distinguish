@@ -6,15 +6,14 @@ import {
   IObservationMatrix
 } from "../interfaces"
 import makeRequest from '../utils/makeRequest'
-
-type Descriptor = IDescriptor | IDescriptorContinuous | IDescriptorQualitative
+import { Descriptor } from '../types'
 
 interface IStore {
   descriptors: Array<Descriptor>
   observationMatrix: IObservationMatrix | undefined
 }
 
-export const useStore = defineStore('descriptors', {
+export const useObservationMatrixStore = defineStore('observationMatrix', {
   state: (): IStore => ({
     observationMatrix: undefined,
     descriptors: []

@@ -1,9 +1,11 @@
+
 export * from './CharacterState'
 export * from './Depiction'
 export * from './Descriptor'
 export * from './DescriptorContinuous'
+export * from './DescriptorPresenceAbsence'
 export * from './DescriptorQualitative'
 export * from './DescriptorSample'
+export * from './IAPIConfiguration'
 export * from './KeyFilter'
 export * from './ObservationMatrix'
-export * from './IAPIConfiguration'
