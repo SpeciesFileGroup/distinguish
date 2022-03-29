@@ -1,0 +1,19 @@
+<template>
+  <label>
+    <input
+      v-model="rowFilter"
+      type="checkbox">
+    Filter
+  </label>
+</template>
+<script setup lang="ts">
+import { computed } from '@vue/reactivity';
+import { useSettingsStore } from '../../../store/settings';
+
+const useStore = useSettingsStore()
+
+const rowFilter = computed({
+  get: () => useStore.getSettings.rowFilter,
+  set: value => useStore.$patch({ rowFilter: value })
+})
+</script>

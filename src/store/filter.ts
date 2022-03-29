@@ -1,5 +1,5 @@
 import { defineStore } from "pinia"
-import { IKeyFilter, TFilter } from "../interfaces"
+import { IKeyFilter } from "../interfaces"
 
 export const useFilterStore = defineStore('filter', {
   state: (): IKeyFilter => ({

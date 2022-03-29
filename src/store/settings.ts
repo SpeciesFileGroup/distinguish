@@ -18,6 +18,6 @@ export const useSettingsStore = defineStore('settings', {
   }),
 
   getters: {
-    state: state => state
+    getSettings: state => state
   },
 })

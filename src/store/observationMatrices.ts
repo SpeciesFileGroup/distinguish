@@ -1,12 +1,7 @@
 import { defineStore } from "pinia"
-import {
-  IDescriptor,
-  IDescriptorContinuous,
-  IDescriptorQualitative,
-  IObservationMatrix
-} from "../interfaces"
-import makeRequest from '../utils/makeRequest'
+import { IObservationMatrix } from "../interfaces"
 import { Descriptor } from '../types'
+import makeRequest from '../utils/makeRequest'
 
 interface IStore {
   descriptors: Array<Descriptor>
@@ -20,12 +15,17 @@ export const useObservationMatrixStore = defineStore('observationMatrix', {
   }),
 
   getters: {
-    observationMatrix: state => state.observationMatrix,
+    getObservationMatrix: (state: IStore) => state.observationMatrix,
     
-    descriptors: state => state.descriptors,
+    getDescriptors: (state: IStore): Array<Descriptor> => state.descriptors,
 
-    descriptorById: state => (id: number) => state.descriptors
-      .find((d: Descriptor) => d.descriptorId === id),
+    getDescriptorById: (state: IStore) => (id: number): Descriptor | undefined => state.descriptors.find((d: Descriptor) => d.descriptorId === id),
+
+    getDescriptorsUsed: (state: IStore): Array<Descriptor> => state.descriptors.filter(d => d.status === 'used'),
+
+    getDescriptorsUseless: (state: IStore): Array<Descriptor> => state.descriptors.filter(d => d.status === 'useless'),
+
+    getDescriptorsUseful: (state: IStore): Array<Descriptor> => state.descriptors.filter(d => d.status === 'useful')
   },
 
   actions: {
