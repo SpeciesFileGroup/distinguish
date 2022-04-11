@@ -1,3 +1,4 @@
+import { makeObservationMatrix } from './../adapters/makeObservationMatrix';
 import { defineStore } from "pinia"
 import { IObservationMatrix } from "../interfaces"
 import { Descriptor } from '../types'
@@ -33,13 +34,13 @@ export const useObservationMatrixStore = defineStore('observationMatrix', {
       this.descriptors = descriptors
     },
 
-    requestObservationMatrix (id: number) {
-      makeRequest.get(`/tasks/observation_matrices/interactive_key/${id}/key`, {
+    async requestObservationMatrix (id: number) {
+      return makeRequest.get(`/tasks/observation_matrices/interactive_key/${id}/key`, {
         params: { 
           row_filter: {} 
         }
       }).then(response => {
-        this.observationMatrix = response.data
+        this.observationMatrix = makeObservationMatrix(response.data)
       })
     }
   }

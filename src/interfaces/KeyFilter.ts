@@ -5,8 +5,8 @@ export interface IKeyFilter {
   eliminateUknown?: undefined,
   errorTolerance?: undefined,
   identifiedToRank?: undefined,
-  keywordIds?: Array<number>,
+  keywordIds: Array<number>,
   languageId?: number | undefined,
-  otuFilter?: Array<number>,
+  otuFilter: Array<number>,
   sorting?: string
 }

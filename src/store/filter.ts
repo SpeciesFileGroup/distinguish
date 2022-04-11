@@ -1,6 +1,8 @@
 import { defineStore } from "pinia"
 import { IKeyFilter } from "../interfaces"
 
+export type DescriptorFilter = string | boolean | Array<number>
+
 export const useFilterStore = defineStore('filter', {
   state: (): IKeyFilter => ({
     descriptors: [],
@@ -14,7 +16,9 @@ export const useFilterStore = defineStore('filter', {
   }),
 
   getters: {
-    getFilter: state => state,
+    getKeywordIds: state => state.keywordIds,
+
+    getOtuFilter: state => state.otuFilter,
 
     getDescriptors: state => state.descriptors,
 
@@ -22,8 +26,20 @@ export const useFilterStore = defineStore('filter', {
   },
 
   actions: {
-    setDescriptor ({ descriptorId, value }: { descriptorId: number, value: string | boolean | Array<number> }) {
+    setDescriptor ({ descriptorId, value }: { descriptorId: number, value: DescriptorFilter }) {
       this.descriptors[descriptorId] = value
+    },
+
+    removeKeywordId (id: number) {
+      const index: number = this.keywordIds.findIndex(keywordId => keywordId === id)
+
+      if (index > -1) {
+        this.keywordIds.splice(index, 1)
+      }
+    },
+
+    addKeywordId (id: number) {
+      this.keywordIds.push(id)
     }
   }
 })

@@ -19,7 +19,7 @@ const axiosInstance = () => {
   }
   
   if (!projectToken || !(projectId && userToken)) {
-    const csrfToken: string | undefined | null = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content')
+    const csrfToken: string | null = null // TODO: Use configuration parameter to set this.
     const headers: object = { 'X-CSRF-Token': csrfToken }
 
     Object.assign(axiosConfiguration, { headers })
