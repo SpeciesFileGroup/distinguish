@@ -1,2 +1,6 @@
+export * from './makeCharacterState'
 export * from './makeDepiction'
 export * from './makeDescriptor'
+export * from './makeInteractiveKey'
+export * from './makeObservationMatrix'
+export * from './makeParamsDescriptor'

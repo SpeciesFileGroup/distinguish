@@ -1,18 +1,22 @@
-import { makeObservationMatrix } from './../adapters/makeObservationMatrix';
+import { makeInteractiveKey } from '../adapters/makeInteractiveKey';
+import { makeDescriptor, makeObservationMatrix } from '../adapters';
+
 import { defineStore } from "pinia"
-import { IObservationMatrix } from "../interfaces"
+import { IObservationMatrix, ICitation } from "../interfaces"
 import { Descriptor } from '../types'
 import makeRequest from '../utils/makeRequest'
 
 interface IStore {
   descriptors: Array<Descriptor>
-  observationMatrix: IObservationMatrix | undefined
+  observationMatrix: IObservationMatrix | undefined,
+  citation: ICitation | undefined
 }
 
 export const useObservationMatrixStore = defineStore('observationMatrix', {
   state: (): IStore => ({
     observationMatrix: undefined,
-    descriptors: []
+    descriptors: [],
+    citation: undefined
   }),
 
   getters: {
@@ -41,6 +45,7 @@ export const useObservationMatrixStore = defineStore('observationMatrix', {
         }
       }).then(response => {
         this.observationMatrix = makeObservationMatrix(response.data)
+        this.setDescriptors(response.data.list_of_descriptors.map((d: any) => makeDescriptor(d)))
       })
     }
   }

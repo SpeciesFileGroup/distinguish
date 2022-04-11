@@ -1,7 +1,7 @@
 import { beforeAll, afterEach, afterAll } from 'vitest'
 import { rest } from 'msw'
 import { setupServer } from 'msw/node'
-import { interactiveKeyResponse } from './mock/observationMatrixRequest'
+import { interactiveKeyResponse } from './mock/responses/keyRequest'
 
 export const restHandlers = [
   rest.get('*/tasks/observation_matrices/interactive_key/:matrixId/key', (req, res, ctx) => {

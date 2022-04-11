@@ -1,5 +1,5 @@
-
 export * from './CharacterState'
+export * from './Citation'
 export * from './Depiction'
 export * from './Descriptor'
 export * from './DescriptorContinuous'
@@ -7,5 +7,6 @@ export * from './DescriptorPresenceAbsence'
 export * from './DescriptorQualitative'
 export * from './DescriptorSample'
 export * from './IAPIConfiguration'
+export * from './InteractiveKey'
 export * from './KeyFilter'
 export * from './ObservationMatrix'
