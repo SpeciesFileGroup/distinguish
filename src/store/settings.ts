@@ -18,6 +18,16 @@ export const useSettingsStore = defineStore('settings', {
   }),
 
   getters: {
-    getSettings: state => state
+    getIsLoading: (state): boolean => state.isLoading,
+    
+    getLayout: (state): string => state.gridLayout,
+
+    getRefreshOnlyTaxa: (state): boolean => state.refreshOnlyTaxa,
+
+    getRowFilter: (state): boolean => state.rowFilter
   },
+
+  actions: {
+    
+  }
 })

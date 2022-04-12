@@ -1,6 +1,4 @@
-import { ICharacterState } from './../interfaces/CharacterState';
 import {
-  IDescriptor,
   IDescriptorQualitative,
   IDescriptorContinuous,
   IDescriptorPresenceAbsence,

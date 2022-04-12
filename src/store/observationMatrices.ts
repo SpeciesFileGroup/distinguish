@@ -20,6 +20,8 @@ export const useObservationMatrixStore = defineStore('observationMatrix', {
   }),
 
   getters: {
+    getCitation: (state: IStore): ICitation | undefined => state.citation,
+
     getObservationMatrix: (state: IStore) => state.observationMatrix,
     
     getDescriptors: (state: IStore): Array<Descriptor> => state.descriptors,

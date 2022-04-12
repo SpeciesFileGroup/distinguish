@@ -22,7 +22,13 @@ export const useFilterStore = defineStore('filter', {
 
     getDescriptors: state => state.descriptors,
 
-    getDescriptorValueById: (state) => (id: number): any => state.descriptors[id]
+    getIdentifiedToRank: state => state.identifiedToRank,
+
+    getEliminateUknown: state => state.eliminateUknown,
+
+    getSorting: state => state.sorting,
+
+    getDescriptorValueById: (state) => (id: number): DescriptorFilter => state.descriptors[id] || ''
   },
 
   actions: {
