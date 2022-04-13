@@ -1,29 +1,40 @@
-import { makeInteractiveKey } from '../adapters/makeInteractiveKey';
-import { makeDescriptor, makeObservationMatrix } from '../adapters';
-
 import { defineStore } from "pinia"
-import { IObservationMatrix, ICitation } from "../interfaces"
 import { Descriptor } from '../types'
+import {
+  makeDescriptor,
+  makeObservationMatrix,
+  makeRow
+} from '../adapters';
+import {
+  IObservationMatrix,
+  ICitation,
+  IRow
+} from "../interfaces"
+
 import makeRequest from '../utils/makeRequest'
 
 interface IStore {
   descriptors: Array<Descriptor>
   observationMatrix: IObservationMatrix | undefined,
   citation: ICitation | undefined
+  eliminated: Array<IRow>,
+  remaining: Array<IRow>
 }
 
 export const useObservationMatrixStore = defineStore('observationMatrix', {
   state: (): IStore => ({
     observationMatrix: undefined,
+    citation: undefined,
     descriptors: [],
-    citation: undefined
+    eliminated: [],
+    remaining: []
   }),
 
   getters: {
     getCitation: (state: IStore): ICitation | undefined => state.citation,
 
     getObservationMatrix: (state: IStore) => state.observationMatrix,
-    
+
     getDescriptors: (state: IStore): Array<Descriptor> => state.descriptors,
 
     getDescriptorById: (state: IStore) => (id: number): Descriptor | undefined => state.descriptors.find((d: Descriptor) => d.descriptorId === id),
@@ -32,22 +43,40 @@ export const useObservationMatrixStore = defineStore('observationMatrix', {
 
     getDescriptorsUseless: (state: IStore): Array<Descriptor> => state.descriptors.filter(d => d.status === 'useless'),
 
-    getDescriptorsUseful: (state: IStore): Array<Descriptor> => state.descriptors.filter(d => d.status === 'useful')
+    getDescriptorsUseful: (state: IStore): Array<Descriptor> => state.descriptors.filter(d => d.status === 'useful'),
+
+    getEliminated: (state: IStore): Array<object> => state.eliminated,
+
+    getRemaining: (state: IStore): Array<object> => state.remaining
   },
 
   actions: {
-    setDescriptors (descriptors: Array<Descriptor>) {
+    setDescriptors(descriptors: Array<Descriptor>) {
       this.descriptors = descriptors
     },
 
-    async requestObservationMatrix (id: number) {
+    setEliminated(rows: Array<IRow>) {
+      this.eliminated = rows
+    },
+
+    setRemaining(rows: Array<IRow>) {
+      this.remaining = rows
+    },
+
+    setObservationMatrix(observationMatrix: IObservationMatrix) {
+      this.observationMatrix = observationMatrix
+    },
+
+    async requestObservationMatrix(id: number) {
       return makeRequest.get(`/tasks/observation_matrices/interactive_key/${id}/key`, {
-        params: { 
-          row_filter: {} 
+        params: {
+          row_filter: {}
         }
       }).then(response => {
-        this.observationMatrix = makeObservationMatrix(response.data)
+        this.setObservationMatrix(makeObservationMatrix(response.data))
         this.setDescriptors(response.data.list_of_descriptors.map((d: any) => makeDescriptor(d)))
+        this.setEliminated(response.data.eliminated.map((r: object) => makeRow(r)))
+        this.setRemaining(response.data.remaining.map((r: object) => makeRow(r)))
       })
     }
   }

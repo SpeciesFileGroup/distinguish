@@ -5,5 +5,5 @@ export interface IInteractiveKey {
   descriptorAvailableKeywords: Array<object>
   descriptorAvailableLanguages: Array<object>
   eliminated: Array<object>,
-  remaning: Array<object>
+  remaining: Array<object>
 }
