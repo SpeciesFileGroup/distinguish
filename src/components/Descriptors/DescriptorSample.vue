@@ -14,7 +14,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { IDescriptorSample } from '../../interfaces';
+import { IDescriptorSample } from '../../interfaces'
 import { useFilterStore } from '../../store/filter'
 import DescriptorContainer from './DescriptorContainer.vue'
 

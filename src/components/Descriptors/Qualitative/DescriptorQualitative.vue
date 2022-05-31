@@ -19,7 +19,7 @@
 <script setup lang="ts">
 import { IDescriptorQualitative, ICharacterState } from '../../../interfaces';
 import { useFilterStore } from '../../../store/filter'
-import DescriptorContainer from './DescriptorContainer.vue'
+import DescriptorContainer from '../DescriptorContainer.vue'
 
 const props = defineProps<{
   descriptor: IDescriptorQualitative

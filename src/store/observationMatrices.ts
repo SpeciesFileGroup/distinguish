@@ -45,9 +45,9 @@ export const useObservationMatrixStore = defineStore('observationMatrix', {
 
     getDescriptorsUseful: (state: IStore): Array<Descriptor> => state.descriptors.filter(d => d.status === 'useful'),
 
-    getEliminated: (state: IStore): Array<object> => state.eliminated,
+    getEliminated: (state: IStore): Array<IRow> => state.eliminated,
 
-    getRemaining: (state: IStore): Array<object> => state.remaining
+    getRemaining: (state: IStore): Array<IRow> => state.remaining
   },
 
   actions: {

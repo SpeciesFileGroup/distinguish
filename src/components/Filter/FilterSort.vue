@@ -1,6 +1,6 @@
 <template>
   <div>
-    <label class="display-block">Descriptor sorting</label>
+    <label class="d-block">Descriptor sorting</label>
     <select v-model="sortDescriptors">
       <option :value="undefined"></option>
       <option

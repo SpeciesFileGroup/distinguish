@@ -1,21 +1,22 @@
 <template>
-  <button
-    type="button"
+  <VBtn
     :class="LAYOUT_MODES[gridLayout]"
     @click="setLayout"
   >
-    <div class="i3-grid layout-mode-1 grid-icon">
-      <div class="descriptors-view grid-item"/>
-      <div class="taxa-remaining grid-item"/>
-      <div class="taxa-eliminated grid-item"/>
-    </div>
-  </button>
+    <VGrid class="grid-icon">
+      <div class="panel-descriptors"/>
+      <div class="panel-remaining"/>
+      <div class="panel-eliminated"/>
+    </VGrid>
+  </VBtn>
 </template>
 
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useSettingsStore } from '../../store/settings'
 import { LAYOUT_MODES } from '../../constants/LayoutModes'
+import VBtn from './VBtn.vue'
+import VGrid from './VGrid.vue'
 
 const store = useSettingsStore()
 const gridLayout = computed<string>(() => store.getLayout)
@@ -27,3 +28,17 @@ const setLayout = () => {
 }
 
 </script>
+
+<style lang="scss">
+.grid-icon {
+  width: 20px;
+  height: 12px;
+  border: 2px solid transparent;
+  background-color: transparent;
+  grid-gap: 2px;
+
+  > div {
+    background-color: white;
+  }
+}
+</style>

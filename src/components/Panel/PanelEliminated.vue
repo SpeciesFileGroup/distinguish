@@ -5,7 +5,7 @@
       <li
         class="margin-small-bottom"
         v-for="item in eliminated"
-        :key="item.object.id">
+        :key="item.rowId">
         <row-component :row="item"/>
       </li>
     </ul>
@@ -16,8 +16,9 @@
 
 import { computed } from 'vue'
 import { useObservationMatrixStore } from '../../store/observationMatrices'
+import { IRow } from '../../interfaces';
 
 const store = useObservationMatrixStore()
-const eliminated = computed(() => store.getEliminated)
+const eliminated = computed<Array<IRow>>(() => store.getEliminated)
 
 </script>

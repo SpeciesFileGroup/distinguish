@@ -1,15 +1,16 @@
 <template>
   <label>
-    Eliminate unknowns
     <input
       v-model="eliminateUknown"
-      type="checkbox">
+      type="checkbox"
+    >
+    Eliminate unknowns
   </label>
 </template>
 
 <script setup lang="ts">
-import { computed, WritableComputedRef } from 'vue';
-import { useFilterStore } from '../../store/filter';
+import { computed, WritableComputedRef } from 'vue'
+import { useFilterStore } from '../../store/filter'
 
 const store = useFilterStore()
 

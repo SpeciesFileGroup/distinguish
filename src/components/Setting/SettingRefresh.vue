@@ -1,15 +1,16 @@
 <template>
   <label>
-    Refresh only taxa
     <input
       v-model="refreshTaxa"
-      type="checkbox">
+      type="checkbox"
+    >
+    Refresh only taxa
   </label>
 </template>
 
 <script setup lang="ts">
 import { computed } from 'vue';
-import { useSettingsStore } from '../../store/settings';
+import { useSettingsStore } from '../../store/settings'
 
 const store = useSettingsStore()
 

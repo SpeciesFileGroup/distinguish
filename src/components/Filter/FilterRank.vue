@@ -1,6 +1,6 @@
 <template>
   <div>
-    <label class="display-block">Identified to rank</label>
+    <label class="d-block">Identified to rank</label>
     <select v-model="rankSelected">
       <option :value="undefined"></option>
       <option
