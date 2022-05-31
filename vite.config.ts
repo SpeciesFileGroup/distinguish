@@ -1,6 +1,6 @@
 import { fileURLToPath, URL } from 'url'
 
-import { defineConfig } from 'vite'
+import { defineConfig } from 'vitest/config'
 import vue from '@vitejs/plugin-vue'
 
 
@@ -11,9 +11,12 @@ export default defineConfig({
       '@': fileURLToPath(new URL("./src", import.meta.url))
     },
   },
+
   plugins: [vue()],
 
   test: {
-    setupFiles: "src/setupTests.ts"
+    globals: true,
+    environment: 'happy-dom',
+    setupFiles: 'src/setupTests.ts'
   }
 })

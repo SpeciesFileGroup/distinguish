@@ -1,5 +1,5 @@
-import { useObservationMatrixStore } from './observationMatrices';
-import { IDescriptor } from './../interfaces/Descriptor';
+import { useObservationMatrixStore } from '../../store/observationMatrices';
+import { IDescriptor } from '../../interfaces/Descriptor';
 import { setActivePinia, createPinia } from 'pinia'
 import { 
   beforeAll, 

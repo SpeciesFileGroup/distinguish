@@ -1,9 +1,8 @@
 <template>
   <span
-    v-if="citation"
-    :title="citation.label"
+    :title="citationLabel"
   >
-    {{ citation.author }}, {{ citation.year }}
+    {{ citationLabel}}
   </span>
 </template>
 
@@ -12,6 +11,12 @@ import { computed } from 'vue'
 import { useObservationMatrixStore } from '../store/observationMatrices'
 
 const store = useObservationMatrixStore()
-const citation = computed(() => store.getCitation)
+const citationLabel = computed(() => {
+  const citation = store.getCitation
+
+  return Object.values(citation || {})
+    .filter(Boolean)
+    .join(', ')
+})
 
 </script>
