@@ -24,7 +24,7 @@ describe('Filter keywords', () => {
     }
   }
 
-  it('It opens modal', async () => {
+  it('opens modal', async () => {
     const { container } = setup() 
     const openButton = container.querySelector('button') as HTMLButtonElement
 
@@ -33,7 +33,7 @@ describe('Filter keywords', () => {
     expect(container.querySelector('.modal-body')).not.toBe(null)
   })
 
-  it('It displays a list of keywords', async () => {
+  it('displays a list of keywords and toggle lenguage', async () => {
     const { 
       store,
       filterStore,
@@ -43,13 +43,14 @@ describe('Filter keywords', () => {
     const openButton = container.querySelector('button') as HTMLButtonElement
 
     await store.requestInteractiveKey(24)
-    
     await fireEvent.click(openButton)
 
     const input = container.querySelector('input[value="127"]') as HTMLInputElement
 
     await userEvent.click(input)
-
     expect(filterStore.getKeywordIds).toEqual([127])
+    
+    await userEvent.click(input)
+    expect(filterStore.getKeywordIds).toEqual([])
   })
 })

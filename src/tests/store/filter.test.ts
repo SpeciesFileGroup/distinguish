@@ -49,7 +49,7 @@ describe('Filter Store', () => {
     expect(filter).toStrictEqual(store.otuFilter)
   })
 
-  it ('set and get descriptors', () => {
+  it ('set and get descriptors by id', () => {
     let descriptorValue: DescriptorFilter
 
     store.setDescriptor({ descriptorId: 1, value: true })
@@ -65,6 +65,8 @@ describe('Filter Store', () => {
     descriptorValue = store.getDescriptorValueById(3)
     expect(descriptorValue).toStrictEqual([123, 456])
 
+    descriptorValue = store.getDescriptorValueById(999)
+    expect(descriptorValue).toStrictEqual('')
   })
 
 })

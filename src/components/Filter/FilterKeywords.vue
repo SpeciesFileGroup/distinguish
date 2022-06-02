@@ -47,15 +47,8 @@ const isModalVisible = ref(false)
 const keywordIds: WritableComputedRef<number[]> = computed({
   get: ():number[] => filterStore.getKeywordIds,
 
-  set: (keywordId) => {
-    const parsedNumber = Number(keywordId)
-    const isIncluded: boolean = filterStore.getKeywordIds.includes(parsedNumber)
-
-    if (isIncluded) {
-      filterStore.removeKeywordId(parsedNumber)
-    } else {
-      filterStore.addKeywordId(parsedNumber)
-    }
+  set: (value) => {
+    filterStore.$patch({ keywordIds: value })
   }
 })
 
