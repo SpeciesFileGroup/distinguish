@@ -3,7 +3,7 @@
     <input
       ref="autocompleteInput"
       v-model="autocompleteValue"
-      class="vue-autocomplete-input normal-input"
+      class="vue-autocomplete-input"
       type="text"
       autocomplete="off"
       :placeholder="placeholder"
@@ -19,7 +19,7 @@
       @keydown.enter="enterKey"
     >
     <ul 
-      v-if="autocompleteValue && list.length"
+      v-if="autocompleteValue && state.list.length"
       class="vue-autocomplete-list"
     >
       <li
@@ -29,7 +29,7 @@
         :class="{ active: state.currentIndex === index }"
         @mouseover="setCurrentIndex(index)"
         @click.prevent="selectItem(index)"
-        v-html="item[props.queryString]"
+        v-html="item[props.label]"
       />
       <li v-if="state.list.length >= 20">
         Results may be truncated
@@ -51,13 +51,13 @@ import makeRequest from '@/utils/makeRequest'
 interface Props {
   autofocus?: boolean
   disabled?: boolean
-  label: string,
-  limit: number,
-  min: number,
+  label?: string,
+  limit?: number,
+  min?: number,
   params?: object,
-  placeholder: string,
-  queryString: string,
-  time: number
+  placeholder?: string,
+  queryParam: string,
+  delay?: number
   url: string
 }
 
@@ -74,9 +74,10 @@ interface State {
 }
 
 const props = withDefaults(defineProps<Props>(), {
+  delay: 500,
+  label: 'label',
+  limit: 20,
   min: 1,
-  limit: 0,
-  time: 500,
   placeholder: '',
   params: () => ({})
 })
@@ -135,7 +136,7 @@ const updateTimeout = () => {
 
   state.timeoutRequest = setTimeout(() => {
     requestRecords()
-  }, props.time)
+  }, props.delay)
 }
 
 const requestRecords = async () => {
@@ -144,7 +145,12 @@ const requestRecords = async () => {
   state.list = []
   state.isSearching = true
 
-  const { data } = await makeRequest.get(props.url, { params: props.params })
+  const { data } = await makeRequest.get(props.url, { 
+    params: {
+      ...props.params,
+      [props.queryParam]: autocompleteValue.value
+    }
+  })
 
   state.list = data
   state.isSearching = false
