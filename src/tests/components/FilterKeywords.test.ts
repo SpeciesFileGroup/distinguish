@@ -1,7 +1,5 @@
 import { createTestingPinia } from '@pinia/testing'
-import { interactiveKeyResponse } from '@/mock/responses/keyResponse'
-import { makeKeyword } from '@/adapters/makeKeyword'
-import { render, screen, fireEvent } from '@testing-library/vue'
+import { render, fireEvent } from '@testing-library/vue'
 import { useFilterStore } from '@/store/filter';
 import { useObservationMatrixStore } from '@/store/observationMatrices'
 import userEvent from '@testing-library/user-event'
@@ -44,9 +42,7 @@ describe('Filter keywords', () => {
   
     const openButton = container.querySelector('button') as HTMLButtonElement
 
-    store.$patch({
-      availableKeywords: interactiveKeyResponse.descriptor_available_keywords.map(d => makeKeyword(d))
-    })
+    await store.requestInteractiveKey(24)
     
     await fireEvent.click(openButton)
 

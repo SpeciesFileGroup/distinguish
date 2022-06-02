@@ -50,7 +50,6 @@ const keywordIds: WritableComputedRef<number[]> = computed({
   set: (keywordId) => {
     const parsedNumber = Number(keywordId)
     const isIncluded: boolean = filterStore.getKeywordIds.includes(parsedNumber)
-    console.log(parsedNumber)
 
     if (isIncluded) {
       filterStore.removeKeywordId(parsedNumber)

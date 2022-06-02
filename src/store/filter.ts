@@ -18,6 +18,8 @@ export const useFilterStore = defineStore('filter', {
   getters: {
     getKeywordIds: state => state.keywordIds,
 
+    getLanguageId: state => state.languageId,
+
     getOtuFilter: state => state.otuFilter,
 
     getDescriptors: state => state.descriptors,
@@ -46,6 +48,10 @@ export const useFilterStore = defineStore('filter', {
 
     addKeywordId (id: number) {
       this.keywordIds.push(id)
+    },
+
+    setLanguageId (id: number) {
+      this.languageId = id
     }
   }
 })

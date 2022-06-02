@@ -8,7 +8,8 @@ describe('Autocomplete component', () => {
       props: {
         url: '/observation_matrices/autocomplete',
         queryParam: 'term',
-        label: 'label_html'
+        label: 'label_html',
+        delay: 0
       }
     })
     const input: HTMLInputElement = utils.container.querySelector('input') as HTMLInputElement
