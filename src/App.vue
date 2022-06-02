@@ -7,7 +7,7 @@
       <CitationLabel />
     </div>
 
-    <HeaderBar />
+    <HeaderBar class="margin-medium-bottom"/>
 
     <VGrid
       class="w-100"
@@ -29,7 +29,7 @@
 import { computed } from 'vue'
 import { useSettingsStore } from './store/settings'
 import CitationLabel from './components/CitationLabel.vue'
-import HeaderBar from './components/HeaderBar.vue'
+import HeaderBar from './components/Header/HeaderBar.vue'
 import PanelEliminated from './components/Panel/PanelEliminated.vue'
 import PanelRemaining from './components/Panel/PanelRemaining.vue'
 import PanelDescriptors from './components/Panel/PanelDescriptors/PanelDescriptors.vue'

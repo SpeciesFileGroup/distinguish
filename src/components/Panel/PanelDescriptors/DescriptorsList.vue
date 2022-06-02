@@ -3,10 +3,12 @@
   <ol>
     <li
       v-for="descriptor in descriptors"
-      :key="descriptor.descriptorId">
+      :key="descriptor.descriptorId"
+    >
       <component
+        :is="componentFor(descriptor.type)"
         :descriptor="descriptor"
-        :is="componentFor(descriptor.type)"/>
+      />
     </li>
   </ol>
 </template>
@@ -31,8 +33,8 @@ const components: { [index: string]: Function } = {
   DescriptorSample
 }
 
-const componentFor = (descriptorType: String) => {
-  const componentName: any = descriptorType.replace('::', '')
+const componentFor = (descriptorType: string) => {
+  const componentName: string = descriptorType.replace('::', '')
 
   return components[componentName]
 }

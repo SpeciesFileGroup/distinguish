@@ -2,10 +2,11 @@
   <div>
     <label class="d-block">Identified to rank</label>
     <select v-model="rankSelected">
-      <option :value="undefined"></option>
+      <option :value="undefined" />
       <option
         v-for="rank in RANK_TYPES"
-        :key="rank">
+        :key="rank"
+      >
         {{ rank }}
       </option>
     </select>

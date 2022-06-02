@@ -86,10 +86,17 @@ describe('Observation Matrices Store', () => {
     ])
   })
 
-  it ('load interactive key', async () => {
-    const interactiveKeyResponse = await store.requestObservationMatrix(24)
+  describe('load key', () => {
 
-    expect(store.descriptors.length).toBe(7)
-    expect(store.observationMatrix?.observationMatrixId).toBe(24)
+    beforeEach(async () => {
+      await store.requestInteractiveKey(24)
+    })
+
+    it ('store set after load', async () => {
+      expect(store.descriptors.length).toBe(7)
+      expect(store.observationMatrix?.observationMatrixId).toBe(24)
+      expect(store.availableLanguages.length).toBe(2)
+      expect(store.availableKeywords.length).toBe(4)
+    })
   })
 })

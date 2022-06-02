@@ -4,9 +4,9 @@
     @click="setLayout"
   >
     <VGrid class="grid-icon">
-      <div class="panel-descriptors"/>
-      <div class="panel-remaining"/>
-      <div class="panel-eliminated"/>
+      <div class="panel-descriptors" />
+      <div class="panel-remaining" />
+      <div class="panel-eliminated" />
     </VGrid>
   </VBtn>
 </template>
@@ -15,8 +15,8 @@
 import { computed } from 'vue'
 import { useSettingsStore } from '../../store/settings'
 import { LAYOUT_MODES } from '../../constants/LayoutModes'
-import VBtn from './VBtn.vue'
-import VGrid from './VGrid.vue'
+import VBtn from '../UI/VBtn.vue'
+import VGrid from '../UI/VGrid.vue'
 
 const store = useSettingsStore()
 const gridLayout = computed<string>(() => store.getLayout)

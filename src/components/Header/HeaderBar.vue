@@ -1,6 +1,6 @@
 <template>
   <div class="header-bar">
-    <div/>
+    <div />
 
     <MenuList>
       <MenuListItem>
@@ -21,21 +21,20 @@
     </MenuList>
 
     <div>
-    <GridButton />
+      <GridToggle />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import FilterEliminateUnknowns from './Filter/FilterEliminateUnknowns.vue'
-import FilterErrorTolerance from './Filter/FilterErrorTolerance.vue'
-import FilterRank from './Filter/FilterRank.vue'
-import FilterSort from './Filter/FilterSort.vue'
-import SettingRefresh from './Setting/SettingRefresh.vue'
-import MenuList from './UI/Menu/MenuList.vue'
-import MenuListItem from './UI/Menu/MenuItem.vue'
-import GridButton from './UI/GridButton.vue'
-import VBtn from './UI/VBtn.vue'
+import FilterEliminateUnknowns from '../Filter/FilterEliminateUnknowns.vue'
+import FilterErrorTolerance from '../Filter/FilterErrorTolerance.vue'
+import FilterRank from '../Filter/FilterRank.vue'
+import FilterSort from '../Filter/FilterSort.vue'
+import SettingRefresh from '../Setting/SettingRefresh.vue'
+import MenuList from '../UI/Menu/MenuList.vue'
+import MenuListItem from '../UI/Menu/MenuItem.vue'
+import GridToggle from './GridToggle.vue'
 </script>
 
 <style scoped lang="scss">

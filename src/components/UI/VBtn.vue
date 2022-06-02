@@ -16,14 +16,14 @@ interface Props {
   size?: string
 }
 
-const { 
-  color = 'primary',
-  size = 'medium'
-} = defineProps<Props>()
+const props = withDefaults(defineProps<Props>(), {
+  color: 'primary',
+  size: 'medium'
+})
 
 const buttonClasses = computed<Array<string>>(() => [
-  `btn-${color}-color`,
-  `btn-${size}-size`
+  `btn-${props.color}-color`,
+  `btn-${props.size}-size`
 ])
 
 </script>
@@ -32,7 +32,7 @@ const buttonClasses = computed<Array<string>>(() => [
 
 .btn {
   border-radius: 8px;
-  border: 0px;
+  border: none;
 }
 
 .btn-primary-color {

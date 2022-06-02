@@ -3,13 +3,17 @@ import { Descriptor } from '../types'
 import {
   makeDescriptor,
   makeObservationMatrix,
-  makeRow
-} from '../adapters';
+  makeRow,
+  makeKeyword,
+  makeLanguage
+} from '@/adapters';
 import {
   IObservationMatrix,
   ICitation,
-  IRow
-} from "../interfaces"
+  IRow,
+  IKeyword,
+  ILanguage
+} from "@/interfaces"
 
 import makeRequest from '../utils/makeRequest'
 
@@ -18,7 +22,9 @@ interface IStore {
   observationMatrix: IObservationMatrix | undefined,
   citation: ICitation | undefined
   eliminated: Array<IRow>,
-  remaining: Array<IRow>
+  remaining: Array<IRow>,
+  availableKeywords: Array<IKeyword>,
+  availableLanguages: Array<ILanguage>,
 }
 
 export const useObservationMatrixStore = defineStore('observationMatrix', {
@@ -27,7 +33,9 @@ export const useObservationMatrixStore = defineStore('observationMatrix', {
     citation: undefined,
     descriptors: [],
     eliminated: [],
-    remaining: []
+    remaining: [],
+    availableKeywords: [],
+    availableLanguages: []
   }),
 
   getters: {
@@ -47,6 +55,10 @@ export const useObservationMatrixStore = defineStore('observationMatrix', {
 
     getEliminated: (state: IStore): Array<IRow> => state.eliminated,
 
+    getKeywords: (state: IStore): Array<IKeyword> => state.availableKeywords,
+
+    getLanguages: (state: IStore): Array<ILanguage> => state.availableLanguages,
+
     getRemaining: (state: IStore): Array<IRow> => state.remaining
   },
 
@@ -63,21 +75,35 @@ export const useObservationMatrixStore = defineStore('observationMatrix', {
       this.remaining = rows
     },
 
+    setLanguages(languages: Array<ILanguage>) {
+      this.availableLanguages = languages
+    },
+
+    setKeywords(keywords: Array<IKeyword>) {
+      this.availableKeywords = keywords
+    },
+
     setObservationMatrix(observationMatrix: IObservationMatrix) {
       this.observationMatrix = observationMatrix
     },
 
-    async requestObservationMatrix(id: number) {
-      return makeRequest.get(`/tasks/observation_matrices/interactive_key/${id}/key`, {
+    async requestInteractiveKey(observationMatrixId: number) {
+      const request = await makeRequest.get(`/tasks/observation_matrices/interactive_key/${observationMatrixId}/key`, {
         params: {
           row_filter: {}
         }
-      }).then(response => {
-        this.setObservationMatrix(makeObservationMatrix(response.data))
-        this.setDescriptors(response.data.list_of_descriptors.map((d: any) => makeDescriptor(d)))
-        this.setEliminated(response.data.eliminated.map((r: object) => makeRow(r)))
-        this.setRemaining(response.data.remaining.map((r: object) => makeRow(r)))
       })
+
+      const { data } = request
+
+      this.setObservationMatrix(makeObservationMatrix(data))
+      this.setDescriptors(data.list_of_descriptors.map((d: object) => makeDescriptor(d)))
+      this.setEliminated(data.eliminated.map((r: object) => makeRow(r)))
+      this.setRemaining(data.remaining.map((r: object) => makeRow(r)))
+      this.setKeywords(data.descriptor_available_keywords.map((r: object): IKeyword => makeKeyword(r)))
+      this.setLanguages(data.descriptor_available_languages.map((r: object): ILanguage => makeLanguage(r)))
+
+      return request
     }
   }
 })
