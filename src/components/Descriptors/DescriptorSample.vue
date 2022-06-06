@@ -26,7 +26,6 @@ const useStore = useFilterStore()
 const fieldValue = ref<string>(String(useStore.getDescriptorValueById(props.descriptor.descriptorId)))
 
 const setDescriptorValue = () => {
-  console.log("Entra")
   useStore.setDescriptor({
     descriptorId: props.descriptor.descriptorId,
     value: fieldValue.value
