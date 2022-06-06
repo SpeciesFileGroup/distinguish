@@ -17,7 +17,7 @@ describe('Filter language', () => {
     const store: ReturnType<typeof useObservationMatrixStore> = useObservationMatrixStore()
     const filterStore: ReturnType<typeof useFilterStore> = useFilterStore()
 
-    await store.requestInteractiveKey(24)
+    await store.requestInteractiveKey({ observationMatrixId: 24 })
     
     return {
       ...utils,

@@ -42,7 +42,7 @@ describe('Filter keywords', () => {
   
     const openButton = container.querySelector('button') as HTMLButtonElement
 
-    await store.requestInteractiveKey(24)
+    await store.requestInteractiveKey({ observationMatrixId: 24 })
     await fireEvent.click(openButton)
 
     const input = container.querySelector('input[value="127"]') as HTMLInputElement

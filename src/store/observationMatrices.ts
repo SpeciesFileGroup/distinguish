@@ -87,12 +87,8 @@ export const useObservationMatrixStore = defineStore('observationMatrix', {
       this.observationMatrix = observationMatrix
     },
 
-    async requestInteractiveKey(observationMatrixId: number) {
-      const request = await makeRequest.get(`/tasks/observation_matrices/interactive_key/${observationMatrixId}/key`, {
-        params: {
-          row_filter: {}
-        }
-      })
+    async requestInteractiveKey({ observationMatrixId, params = {} }: { observationMatrixId: number, params?: object }) {
+      const request = await makeRequest.get(`/tasks/observation_matrices/interactive_key/${observationMatrixId}/key`, { params })
 
       const { data } = request
 

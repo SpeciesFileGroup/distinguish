@@ -89,7 +89,7 @@ describe('Observation Matrices Store', () => {
   describe('load key', () => {
 
     beforeEach(async () => {
-      await store.requestInteractiveKey(24)
+      await store.requestInteractiveKey({ observationMatrixId: 24 })
     })
 
     it ('store set after load', async () => {

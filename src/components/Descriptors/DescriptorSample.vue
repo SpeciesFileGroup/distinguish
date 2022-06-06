@@ -4,8 +4,8 @@
       {{ descriptor.name }} ({{ descriptor.min }}-{{ descriptor.max }} {{ descriptor.defaultUnit }})
     </template>
     <input
-      type="text"
       v-model="fieldValue"
+      type="text"
       @blur="setDescriptorValue"
       @keyup.enter="setDescriptorValue"
     >
@@ -14,8 +14,8 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { IDescriptorSample } from '../../interfaces'
-import { useFilterStore } from '../../store/filter'
+import { IDescriptorSample } from '@/interfaces'
+import { useFilterStore } from '@/store/filter'
 import DescriptorContainer from './DescriptorContainer.vue'
 
 const props = defineProps<{
@@ -26,7 +26,8 @@ const useStore = useFilterStore()
 const fieldValue = ref<string>(String(useStore.getDescriptorValueById(props.descriptor.descriptorId)))
 
 const setDescriptorValue = () => {
-  useStore.setDescriptor({ 
+  console.log("Entra")
+  useStore.setDescriptor({
     descriptorId: props.descriptor.descriptorId,
     value: fieldValue.value
   })

@@ -23,7 +23,7 @@ describe('Panel remaining', () => {
   it('Render remaining list', async () => {
     const { store, container } = setup()
 
-    await store.requestInteractiveKey(24)
+    await store.requestInteractiveKey({ observationMatrixId: 24 })
     expect(container.querySelectorAll('li').length).toBe(5)
   })
 })

@@ -1,7 +1,10 @@
 <template>
   <descriptor-container :descriptor="descriptor">
-    <select @change="setDescriptorValue">
-      <option :value="undefined"/>
+    <select
+      name="listbox"
+      @change="setDescriptorValue"
+    >
+      <option :value="undefined" />
       <option
         v-for="characterState in descriptor.characterStates"
         :key="characterState.characterStateId"
@@ -17,8 +20,8 @@
 </template>
 
 <script setup lang="ts">
-import { IDescriptorQualitative, ICharacterState } from '../../../interfaces';
-import { useFilterStore } from '../../../store/filter'
+import { IDescriptorQualitative, ICharacterState } from '@/interfaces'
+import { useFilterStore } from '@/store/filter'
 import DescriptorContainer from '../DescriptorContainer.vue'
 
 const props = defineProps<{
