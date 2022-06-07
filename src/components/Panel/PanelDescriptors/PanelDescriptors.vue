@@ -1,15 +1,18 @@
 <template>
   <div class="descriptors-view">
-    <FilterRowCheckbox/>
-    <DescriptorsList 
+    <FilterRowCheckbox />
+    <DescriptorsList
+      v-if="useStore.getDescriptorsUsed.length"
       :descriptors="useStore.getDescriptorsUsed"
       title="Used Descriptors"
     />
-    <DescriptorsList 
+    <DescriptorsList
+      v-if="useStore.getDescriptorsUseful.length"
       :descriptors="useStore.getDescriptorsUseful"
       title="Descriptors Useful for Identification"
     />
-    <DescriptorsList 
+    <DescriptorsList
+      v-if="useStore.getDescriptorsUseless.length"
       :descriptors="useStore.getDescriptorsUseless"
       title="Descriptors no longer relevant for identification"
     />

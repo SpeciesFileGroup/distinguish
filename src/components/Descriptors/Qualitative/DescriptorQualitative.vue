@@ -4,7 +4,7 @@
       name="listbox"
       @change="setDescriptorValue"
     >
-      <option :value="undefined" />
+      <option value="" />
       <option
         v-for="characterState in descriptor.characterStates"
         :key="characterState.characterStateId"
@@ -30,11 +30,18 @@ const props = defineProps<{
 
 const useStore = useFilterStore()
 
-const setDescriptorValue = (e: any) => {
-  useStore.setDescriptor({ 
-    descriptorId: props.descriptor.descriptorId,
-    value: [e.target.value]
-  })
+const setDescriptorValue = (e: Event): void => {
+  const target = e.target as HTMLSelectElement
+  const { descriptorId } = props.descriptor
+
+  if (target.value) {
+    useStore.setDescriptor({ 
+      descriptorId,
+      value: [Number(target.value)]
+    })
+  } else {
+    useStore.removeDescriptor(descriptorId)
+  }
 }
 
 const selectedOption = (characterState: ICharacterState): boolean => {

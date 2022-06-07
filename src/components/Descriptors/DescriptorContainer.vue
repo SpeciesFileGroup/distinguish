@@ -1,10 +1,10 @@
 <template>
   <div :id="`descriptor-${descriptor.descriptorId}`">
-    <h3>
+    <span class="d-block">
       <slot name="title">
         {{ descriptor.name }}
       </slot>
-    </h3>
+    </span>
     <slot />
   </div>
 </template>

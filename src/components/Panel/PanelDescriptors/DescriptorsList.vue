@@ -1,5 +1,5 @@
 <template v-if="descriptors.length">
-  <h3>Descriptors</h3>
+  <h2>{{ title }}</h2>
   <ol>
     <li
       v-for="descriptor in descriptors"
@@ -16,15 +16,15 @@
 <script setup lang="ts">
 
 import { Descriptor } from '@/types'
-import { computed } from 'vue'
-import { useObservationMatrixStore } from '@/store/observationMatrices'
 import DescriptorContinuous from '../../Descriptors/DescriptorContinuous.vue'
 import DescriptorPresenceAbsence from '../../Descriptors/DescriptorPresenceAbsence.vue'
 import DescriptorQualitative from '../../Descriptors/Qualitative/DescriptorQualitative.vue'
 import DescriptorSample from '../../Descriptors/DescriptorSample.vue'
 
-const store = useObservationMatrixStore()
-const descriptors = computed<Array<Descriptor>>(() => store.descriptors)
+defineProps<{ 
+  title: string,
+  descriptors: Array<Descriptor>
+}>()
 
 const components: { [index: string]: Function } = {
   DescriptorContinuous,

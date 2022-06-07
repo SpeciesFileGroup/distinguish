@@ -1,6 +1,12 @@
 <template>
   <div class="header-bar">
-    <div />
+    <VAutocomplete
+      label="label"
+      query-param="term"
+      placeholder="Search an observation matrix..."
+      url="/observation_matrices/autocomplete"
+      :min="2"
+    />
 
     <MenuList>
       <MenuListItem>
@@ -16,11 +22,18 @@
         <FilterRank />
       </MenuListItem>
       <MenuListItem>
+        <FilterLanguage />
+      </MenuListItem>
+      <MenuListItem>
         <FilterSort />
+      </MenuListItem>
+      <MenuListItem>
+        <FilterKeywords />
       </MenuListItem>
     </MenuList>
 
-    <div>
+    <div class="header-bar__buttons">
+      <ResetButton class="margin-small-right" />
       <GridToggle />
     </div>
   </div>
@@ -31,10 +44,15 @@ import FilterEliminateUnknowns from '../Filter/FilterEliminateUnknowns.vue'
 import FilterErrorTolerance from '../Filter/FilterErrorTolerance.vue'
 import FilterRank from '../Filter/FilterRank.vue'
 import FilterSort from '../Filter/FilterSort.vue'
+import FilterLanguage from '../Filter/FilterLanguage.vue'
+import FilterKeywords from '../Filter/FilterKeywords.vue'
 import SettingRefresh from '../Setting/SettingRefresh.vue'
 import MenuList from '../UI/Menu/MenuList.vue'
 import MenuListItem from '../UI/Menu/MenuItem.vue'
 import GridToggle from './GridToggle.vue'
+import VAutocomplete from '../UI/VAutocomplete.vue'
+import ResetButton from './ResetButton.vue'
+
 </script>
 
 <style scoped lang="scss">
@@ -45,6 +63,12 @@ import GridToggle from './GridToggle.vue'
   border-radius: 0.9rem;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+
+  &__buttons {
+    display: flex;
+    align-items: center;
+  }
 }
 
 </style>
