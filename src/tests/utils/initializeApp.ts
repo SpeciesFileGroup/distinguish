@@ -3,11 +3,12 @@ import { useObservationMatrixStore } from '@/store/observationMatrices'
 import { useFilterStore } from '@/store/filter'
 import { render } from '@testing-library/vue'
 
-export const setup = (vueComponent: any) => {
+export const setup = (vueComponent: unknown, options: object = {}) => {
   const utils = render(vueComponent, {
     global: {
       plugins: [createTestingPinia({ stubActions: false })]
-    }
+    },
+    ...options
   })
 
   const store: ReturnType<typeof useObservationMatrixStore> = useObservationMatrixStore()
