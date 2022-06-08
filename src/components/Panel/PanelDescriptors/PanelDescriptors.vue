@@ -1,6 +1,5 @@
 <template>
   <div class="descriptors-view">
-    <FilterRowCheckbox />
     <DescriptorsList
       v-if="useStore.getDescriptorsUsed.length"
       :descriptors="useStore.getDescriptorsUsed"
@@ -20,9 +19,8 @@
 </template>
 
 <script setup lang="ts">
-import { useObservationMatrixStore } from '../../../store/observationMatrices'
+import { useObservationMatrixStore } from '@/store/observationMatrices'
 import DescriptorsList from './DescriptorsList.vue'
-import FilterRowCheckbox from './FilterRowCheckbox.vue'
 
 const useStore = useObservationMatrixStore()
 </script>

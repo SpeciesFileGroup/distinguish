@@ -36,7 +36,7 @@ const buttonClasses = computed<Array<string>>(() => [
 }
 
 .btn-primary-color {
-  background-color: var(--btn-primary-color);
+  background-color: var(--primary-color);
   color: white;
 }
 

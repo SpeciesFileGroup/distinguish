@@ -61,11 +61,10 @@ const gridLayout = computed(() => settingStore.getLayout)
 
 store.requestInteractiveKey({ observationMatrixId: props.startingMatrixId })
 
-filterStore.$subscribe(() => {
-  store.requestInteractiveKey({
-    observationMatrixId: props.startingMatrixId,
-    params: filterStore.getFilterParams
-  })
+filterStore.$subscribe(_ => {
+  if (settingStore.shouldUpdate) {
+    settingStore.checkUpdate()
+  }
 })
 
 </script>

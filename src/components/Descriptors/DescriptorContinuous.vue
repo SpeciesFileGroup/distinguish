@@ -4,8 +4,8 @@
       {{ descriptor.name }} ({{ descriptor.min }}-{{ descriptor.max }} {{ descriptor.defaultUnit }})
     </template>
     <input
-      type="text"
       v-model="fieldValue"
+      type="text"
       @blur="setDescriptorValue"
       @keyup.enter="setDescriptorValue"
     >

@@ -1,4 +1,5 @@
-import { useFilterStore, DescriptorFilter } from '@/store/filter';
+import { useFilterStore } from '@/store/filter'
+import { DescriptorFilter } from '@/types'
 import { setActivePinia, createPinia } from 'pinia'
 import { 
   afterEach,

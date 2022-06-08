@@ -1,7 +1,6 @@
 import { defineStore } from "pinia"
 import { IKeyFilter } from "@/interfaces"
-
-export type DescriptorFilter = string | boolean | Array<number>
+import { DescriptorFilter } from "@/types"
 
 export const useFilterStore = defineStore('filter', {
   state: (): IKeyFilter => ({

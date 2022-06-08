@@ -1,4 +1,5 @@
-type TFilter = { [index: number]: string | boolean | Array<number> }
+import { DescriptorFilter } from '@/types';
+type TFilter = { [index: number]: DescriptorFilter }
 
 export interface IKeyFilter {
   descriptors: TFilter,

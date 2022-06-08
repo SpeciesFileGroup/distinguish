@@ -1,6 +1,10 @@
 @import './vars.scss';
 @import './utils.scss';
 
+body {
+  background-color: var(--bg-color);
+}
+
 #vue-interactive-keys {
   height: calc(100vh - 160px);
   max-height: calc(100vh - 160px);

@@ -57,7 +57,7 @@ import ResetButton from './ResetButton.vue'
 
 <style scoped lang="scss">
 .header-bar {
-  background-color: var(--background-panel);
+  background-color: var(--bg-panel-color);
   padding: 1em;
   box-shadow: rgb(36 37 38 / 8%) 4px 4px 15px 0px;
   border-radius: 0.9rem;

@@ -20,13 +20,14 @@ import DescriptorContinuous from '../../Descriptors/DescriptorContinuous.vue'
 import DescriptorPresenceAbsence from '../../Descriptors/DescriptorPresenceAbsence.vue'
 import DescriptorQualitative from '../../Descriptors/Qualitative/DescriptorQualitative.vue'
 import DescriptorSample from '../../Descriptors/DescriptorSample.vue'
+import { defineComponent } from 'vue'
 
 defineProps<{ 
   title: string,
   descriptors: Array<Descriptor>
 }>()
 
-const components: { [index: string]: Function } = {
+const components: { [index: string]: ReturnType<typeof defineComponent> } = {
   DescriptorContinuous,
   DescriptorPresenceAbsence,
   DescriptorQualitative,

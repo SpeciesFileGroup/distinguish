@@ -1,4 +1,4 @@
-const descriptorTypes: any = {
+const descriptorTypes: { [key: string]: string } = {
   Qualitative: 'Descriptor::Qualitative',
   Continuous: 'Descriptor::Continuous',
   Sample: 'Descriptor::Sample',
