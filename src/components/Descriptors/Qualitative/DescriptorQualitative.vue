@@ -24,10 +24,7 @@ import { IDescriptorQualitative, ICharacterState } from '@/interfaces'
 import { useFilterStore } from '@/store/filter'
 import DescriptorContainer from '../DescriptorContainer.vue'
 
-const props = defineProps<{
-  descriptor: IDescriptorQualitative
-}>()
-
+const props = defineProps<{ descriptor: IDescriptorQualitative }>()
 const useStore = useFilterStore()
 
 const setDescriptorValue = (e: Event): void => {
@@ -45,9 +42,9 @@ const setDescriptorValue = (e: Event): void => {
 }
 
 const selectedOption = (characterState: ICharacterState): boolean => {
-  const storedValue = useStore.getDescriptorValueById(props.descriptor.descriptorId)
+  const storedValue = useStore.getDescriptorValueById(props.descriptor.descriptorId) as Array<number>
 
-  return storedValue?.includes(characterState.characterStateId)
+  return storedValue.includes(characterState.characterStateId)
 }
 
 </script>
