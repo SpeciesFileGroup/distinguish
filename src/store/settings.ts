@@ -10,7 +10,7 @@ interface ISettings {
   refreshOnlyTaxa: boolean,
   rowFilter: boolean,
   shouldUpdate: boolean,
-  hasChanges: boolean
+  observationMatrixId?: number
 }
 
 export const useSettingsStore = defineStore('settings', {
@@ -21,7 +21,7 @@ export const useSettingsStore = defineStore('settings', {
     refreshOnlyTaxa: false,
     rowFilter: true,
     shouldUpdate: true,
-    hasChanges: false
+    observationMatrixId: undefined
   }),
 
   getters: {
@@ -35,12 +35,12 @@ export const useSettingsStore = defineStore('settings', {
 
     getShouldUpdate: (state): boolean => state.shouldUpdate,
 
-    getHasChanges: (state): boolean => state.hasChanges
+    getObservationMatrixId: (state): number | undefined => state.observationMatrixId
   },
 
   actions: {
-    setHasChanges (value: boolean) {
-      this.hasChanges = value
+    setObservationMatrixId (value: number) {
+      this.observationMatrixId = value
     },
 
     setShouldUpdate (value: boolean) {
@@ -50,15 +50,18 @@ export const useSettingsStore = defineStore('settings', {
     checkUpdate () {
       const filterStore = useFilterStore()
       const observationStore = useObservationMatrixStore()
-      const observationMatrixId = observationStore.getObservationMatrix?.observationMatrixId
+      const observationMatrixId = this.observationMatrixId
 
       if (
         this.shouldUpdate &&
         observationMatrixId
       ) {
+        this.isLoading = true
         observationStore.requestInteractiveKey({ 
           observationMatrixId: observationMatrixId,
           params: filterStore.getFilterParams
+        }).then(_ => {
+          this.isLoading = false
         })
       }
     }

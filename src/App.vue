@@ -1,7 +1,7 @@
 <template>
   <div id="vue-interactive-keys">
     <div class="flex-separate">
-      <h1 class="task_header">
+      <h1>
         Interactive key <span v-if="store.getObservationMatrix">| {{ store.getObservationMatrix.name }}</span>
       </h1>
       <CitationLabel />
@@ -18,8 +18,9 @@
       <PanelEliminated class="panel-eliminated grid-panel" />
     </VGrid>
 
-    <spinner-component
+    <VSpinner
       v-if="isLoading"
+      full-screen
       legend="Loading interactive key..."
     />
   </div>
@@ -42,6 +43,7 @@ import PanelEliminated from './components/Panel/PanelEliminated.vue'
 import PanelRemaining from './components/Panel/PanelRemaining.vue'
 import PanelDescriptors from './components/Panel/PanelDescriptors/PanelDescriptors.vue'
 import VGrid from './components/UI/VGrid.vue'
+import VSpinner from '@/components/UI/VSpinner.vue'
 
 interface Props {
   startingMatrixId: number,

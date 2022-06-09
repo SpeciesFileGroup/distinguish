@@ -1,12 +1,6 @@
 <template>
   <div class="header-bar">
-    <VAutocomplete
-      label="label"
-      query-param="term"
-      placeholder="Search an observation matrix..."
-      url="/observation_matrices/autocomplete"
-      :min="2"
-    />
+    <MatrixSelector />
 
     <MenuList>
       <MenuListItem>
@@ -50,7 +44,7 @@ import SettingRefresh from '../Setting/SettingRefresh.vue'
 import MenuList from '../UI/Menu/MenuList.vue'
 import MenuListItem from '../UI/Menu/MenuItem.vue'
 import GridToggle from './GridToggle.vue'
-import VAutocomplete from '../UI/VAutocomplete.vue'
+import MatrixSelector from './MatrixSelector.vue'
 import ResetButton from './ResetButton.vue'
 
 </script>
