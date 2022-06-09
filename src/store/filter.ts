@@ -5,7 +5,7 @@ import { DescriptorFilter } from "@/types"
 export const useFilterStore = defineStore('filter', {
   state: (): IKeyFilter => ({
     descriptors: {},
-    eliminateUknown: undefined,
+    eliminateUnknown: undefined,
     errorTolerance: undefined,
     identifiedToRank: undefined,
     keywordIds: [],
@@ -25,7 +25,7 @@ export const useFilterStore = defineStore('filter', {
 
     getIdentifiedToRank: state => state.identifiedToRank,
 
-    getEliminateUknown: state => state.eliminateUknown,
+    getEliminateUknown: state => state.eliminateUnknown,
 
     getErrorTolerance: state => state.errorTolerance,
 
@@ -49,7 +49,8 @@ export const useFilterStore = defineStore('filter', {
         keyword_ids: state.keywordIds,
         sorting: state.sorting,
         identified_to_rank: state.identifiedToRank,
-        error_tolerance: state.errorTolerance
+        error_tolerance: state.errorTolerance,
+        eliminate_unknown: state.eliminateUnknown,
       }
     }
   },
@@ -81,6 +82,10 @@ export const useFilterStore = defineStore('filter', {
 
     setErrorTolerance (value: number | undefined) {
       this.errorTolerance = value
+    },
+
+    setEliminateUnknown (value: boolean) {
+      this.eliminateUnknown = value
     }
   }
 })

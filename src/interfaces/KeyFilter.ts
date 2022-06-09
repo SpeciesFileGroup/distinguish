@@ -3,7 +3,7 @@ type TFilter = { [index: number]: DescriptorFilter }
 
 export interface IKeyFilter {
   descriptors: TFilter,
-  eliminateUknown?: boolean,
+  eliminateUnknown?: boolean,
   errorTolerance?: number,
   identifiedToRank?: string,
   keywordIds: Array<number>,

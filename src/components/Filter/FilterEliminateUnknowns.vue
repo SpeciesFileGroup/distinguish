@@ -18,7 +18,7 @@ const eliminateUknown: WritableComputedRef<boolean>  = computed({
   get: (): boolean  => !!store.getEliminateUknown,
 
   set: (value: boolean) => {
-    store.$patch({ eliminateUknown: value })
+    store.setEliminateUnknown(value)
   }
 })
 </script>
