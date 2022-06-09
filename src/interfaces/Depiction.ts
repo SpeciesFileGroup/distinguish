@@ -2,5 +2,5 @@ export interface IDepiction {
   depictionId: number,
   caption: string,
   figureLabel: string,
-  imamgeUrl: string
+  imageUrl: string
 }

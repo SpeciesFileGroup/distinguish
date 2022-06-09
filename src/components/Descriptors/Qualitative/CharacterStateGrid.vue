@@ -50,5 +50,6 @@ onUnmounted(() => {
 .character-states-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(33.33%, 1fr));
+  gap: 1em;
 }
 </style>

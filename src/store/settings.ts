@@ -53,7 +53,6 @@ export const useSettingsStore = defineStore('settings', {
       const observationMatrixId = observationStore.getObservationMatrix?.observationMatrixId
 
       if (
-        //this.hasChanges &&  /// Verificar la actualización del estado
         this.shouldUpdate &&
         observationMatrixId
       ) {

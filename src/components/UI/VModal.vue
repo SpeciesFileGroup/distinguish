@@ -35,7 +35,7 @@
 import { onMounted, onUnmounted } from 'vue'
 
 interface Props {
-  containerClass?: object,
+  containerClass?: string,
   containerStyle?: object
 }
 

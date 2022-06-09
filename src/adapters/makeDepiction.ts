@@ -4,5 +4,5 @@ export const makeDepiction = (data: any): IDepiction => ({
   depictionId: data.id,
   caption: data.caption,
   figureLabel: data.figure_label,
-  imamgeUrl: data.image.alternatives.medium.image_file_url
+  imageUrl: data.image.medium
 })

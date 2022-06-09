@@ -1,6 +1,11 @@
 <template>
-  <div class="qualitative-cell">
+  <div class="character-descriptor__cell">
     <label>
+      <VDepiction
+        v-for="depictionId in characterState.depictionIds"
+        :key="depictionId"
+        :depiction-id="depictionId"
+      />
       <input 
         v-model="updateCharacterStateFilter"
         :value="characterState.characterStateId"
@@ -15,6 +20,7 @@
 import { computed, WritableComputedRef } from 'vue'
 import { ICharacterState } from '@/interfaces'
 import { useFilterStore } from '@/store/filter'
+import VDepiction from '@/components/Depiction/VDepiction.vue'
 
 interface Props {
   characterState: ICharacterState,
@@ -41,4 +47,8 @@ const updateCharacterStateFilter: WritableComputedRef<number[]> = computed({
 </script>
 
 <style lang="scss">
+  .character-descriptor__cell {
+    display: flex;
+    align-items: flex-end;
+  }
 </style>
