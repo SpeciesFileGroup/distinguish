@@ -87,17 +87,26 @@ export const useObservationMatrixStore = defineStore('observationMatrix', {
       this.observationMatrix = observationMatrix
     },
 
-    async requestInteractiveKey({ observationMatrixId, params = {} }: { observationMatrixId: number, params?: object }) {
+    async requestInteractiveKey(
+      { observationMatrixId, params = {}, opt = {} }: 
+      { 
+        observationMatrixId: number,
+        params?: object,
+        opt?: { refreshOnlyTaxa?: boolean } 
+      }
+    ) {
       const request = await makeRequest.get(`/observation_matrices/${observationMatrixId}/key`, { params })
-
       const { data } = request
 
-      this.setObservationMatrix(makeObservationMatrix(data))
-      this.setDescriptors(data.list_of_descriptors.map((d: object) => makeDescriptor(d)))
+      if (!opt.refreshOnlyTaxa) {
+        this.setObservationMatrix(makeObservationMatrix(data))
+        this.setDescriptors(data.list_of_descriptors.map((d: object) => makeDescriptor(d)))
+        this.setKeywords(data.descriptor_available_keywords.map((r: object): IKeyword => makeKeyword(r)))
+        this.setLanguages(data.descriptor_available_languages.map((r: object): ILanguage => makeLanguage(r)))
+      }
+
       this.setEliminated(data.eliminated.map((r: object) => makeRow(r)))
       this.setRemaining(data.remaining.map((r: object) => makeRow(r)))
-      this.setKeywords(data.descriptor_available_keywords.map((r: object): IKeyword => makeKeyword(r)))
-      this.setLanguages(data.descriptor_available_languages.map((r: object): ILanguage => makeLanguage(r)))
 
       return request
     }

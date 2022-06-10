@@ -61,7 +61,8 @@ const store = useObservationMatrixStore()
 const isLoading = computed(() => settingStore.getIsLoading)
 const gridLayout = computed(() => settingStore.getLayout)
 
-store.requestInteractiveKey({ observationMatrixId: props.startingMatrixId })
+settingStore.setObservationMatrixId(props.startingMatrixId)
+settingStore.checkUpdate()
 
 filterStore.$subscribe(_ => {
   if (settingStore.shouldUpdate) {

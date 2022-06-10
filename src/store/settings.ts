@@ -47,6 +47,10 @@ export const useSettingsStore = defineStore('settings', {
       this.shouldUpdate = value
     },
 
+    setRefreshOnlyTaxa (value: boolean) {
+      this.refreshOnlyTaxa = value
+    },
+
     checkUpdate () {
       const filterStore = useFilterStore()
       const observationStore = useObservationMatrixStore()
@@ -59,7 +63,10 @@ export const useSettingsStore = defineStore('settings', {
         this.isLoading = true
         observationStore.requestInteractiveKey({ 
           observationMatrixId: observationMatrixId,
-          params: filterStore.getFilterParams
+          params: filterStore.getFilterParams,
+          opt: { 
+            refreshOnlyTaxa: this.refreshOnlyTaxa
+          }
         }).then(_ => {
           this.isLoading = false
         })

@@ -9,18 +9,16 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue';
+import { computed, WritableComputedRef } from 'vue';
 import { useSettingsStore } from '../../store/settings'
 
 const store = useSettingsStore()
 
-const refreshTaxa = computed<boolean>({
+const refreshTaxa: WritableComputedRef<boolean> = computed({
   get: () => store.getRefreshOnlyTaxa,
 
   set: value => {
-    store.$patch({
-      refreshOnlyTaxa: value
-    })
+    store.setRefreshOnlyTaxa(value)
   }
 })
 </script>
