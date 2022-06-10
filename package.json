@@ -1,7 +1,16 @@
 {
-  "name": "vite-project",
+  "name": "distingish",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
+  "files": ["dist"],
+  "main": "./dist/interactive-key.umd.js",
+  "module": "./dist/interactive-key.es.js",
+  "exports": {
+    ".": {
+      "import": "./dist/interactive-key.es.js",
+      "require": "./dist/interactive-key.umd.js"
+    }
+  },
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
