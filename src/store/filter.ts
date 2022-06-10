@@ -10,7 +10,7 @@ export const useFilterStore = defineStore('filter', {
     identifiedToRank: undefined,
     keywordIds: [],
     languageId: undefined,
-    otuFilter: [],
+    rowIds: [],
     sorting: undefined
   }),
 
@@ -19,7 +19,7 @@ export const useFilterStore = defineStore('filter', {
 
     getLanguageId: state => state.languageId,
 
-    getOtuFilter: state => state.otuFilter,
+    getRowIds: state => state.rowIds,
 
     getDescriptors: state => state.descriptors,
 
@@ -51,6 +51,7 @@ export const useFilterStore = defineStore('filter', {
         identified_to_rank: state.identifiedToRank,
         error_tolerance: state.errorTolerance,
         eliminate_unknown: state.eliminateUnknown,
+        row_filter: state.rowIds.join('|')
       }
     }
   },

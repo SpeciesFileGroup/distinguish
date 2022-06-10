@@ -1,3 +1,4 @@
+import { ObservationMatrix } from '@/services/ObservationMatrix'
 import { defineStore } from "pinia"
 import { Descriptor } from '../types'
 import {
@@ -14,8 +15,6 @@ import {
   IKeyword,
   ILanguage
 } from "@/interfaces"
-
-import makeRequest from '../utils/makeRequest'
 
 interface IStore {
   descriptors: Array<Descriptor>
@@ -95,7 +94,7 @@ export const useObservationMatrixStore = defineStore('observationMatrix', {
         opt?: { refreshOnlyTaxa?: boolean } 
       }
     ) {
-      const request = await makeRequest.get(`/observation_matrices/${observationMatrixId}/key`, { params })
+      const request = await ObservationMatrix.key(observationMatrixId, { params })
       const { data } = request
 
       if (!opt.refreshOnlyTaxa) {

@@ -1,7 +1,7 @@
-import makeRequest from "../utils/makeRequest"
+import { useRequest } from "@/composables/useRequest"
 
 export class Depiction {
   static find (id: number) {
-    return makeRequest.get(`/depictions/${id}.json`, { params: { extend: ['image'] }})
+    return useRequest().get(`/depictions/${id}.json`, { params: { extend: ['image'] }})
   }
 }

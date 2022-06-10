@@ -2,7 +2,6 @@ import { useObservationMatrixStore } from './observationMatrices';
 import { useFilterStore } from '@/store/filter';
 import { defineStore } from "pinia"
 
-
 interface ISettings {
   gridLayout: string,
   isLoading: boolean,
