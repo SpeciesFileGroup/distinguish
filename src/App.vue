@@ -1,11 +1,6 @@
 <template>
   <div id="vue-interactive-keys">
-    <div class="flex-separate">
-      <h1>
-        Interactive key <span v-if="store.getObservationMatrix">| {{ store.getObservationMatrix.name }}</span>
-      </h1>
-      <CitationLabel />
-    </div>
+    <TitleKey />
 
     <HeaderBar class="margin-medium-bottom" />
 
@@ -39,13 +34,13 @@ import { useObservationMatrixStore } from './store/observationMatrices'
 import { useFilterStore } from './store/filter'
 import { IAPIConfiguration } from './interfaces'
 import { useAPIConfig } from './composables/useAPIConfig'
-import CitationLabel from './components/CitationLabel.vue'
 import HeaderBar from './components/Header/HeaderBar.vue'
 import PanelEliminated from './components/Panel/PanelEliminated.vue'
 import PanelRemaining from './components/Panel/PanelRemaining.vue'
 import PanelDescriptors from './components/Panel/PanelDescriptors/PanelDescriptors.vue'
 import VGrid from './components/UI/VGrid.vue'
 import VSpinner from '@/components/UI/VSpinner.vue'
+import TitleKey from '@/components/Title/TitleKey.vue'
 
 interface Props {
   observationMatrixId: number,

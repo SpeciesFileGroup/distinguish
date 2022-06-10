@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div>
+    <div class="d-flex justify-between align-center">
       <h2>Remaining ({{ remaining.length }})</h2>
       <FilterRow />
     </div>

@@ -1,14 +1,12 @@
 <template>
-  <span
-    :title="citationLabel"
-  >
-    {{ citationLabel}}
+  <span :title="citationLabel">
+    {{ citationLabel }}
   </span>
 </template>
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useObservationMatrixStore } from '../store/observationMatrices'
+import { useObservationMatrixStore } from '@/store/observationMatrices'
 
 const store = useObservationMatrixStore()
 const citationLabel = computed(() => {

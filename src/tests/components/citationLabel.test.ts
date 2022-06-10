@@ -1,14 +1,14 @@
 import { render, screen } from '@testing-library/vue'
 import { createTestingPinia } from '@pinia/testing'
 import { useObservationMatrixStore } from '@/store/observationMatrices'
-import CitationLabel from '@/components/CitationLabel.vue'
+import TitleMatrixCitation from '@/components/Title/TitleMatrixCitation.vue'
 
 
 describe('Citation label component', () => {
   let store: ReturnType<typeof useObservationMatrixStore>
 
   beforeEach(() => {
-    render(CitationLabel, {
+    render(TitleMatrixCitation, {
       global: {
         plugins: [createTestingPinia()]
       }
