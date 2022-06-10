@@ -8,6 +8,6 @@ export interface IKeyFilter {
   identifiedToRank?: string,
   keywordIds: Array<number>,
   languageId?: number,
-  otuFilter: Array<number>,
+  rowIds: Array<number>,
   sorting?: string
 }

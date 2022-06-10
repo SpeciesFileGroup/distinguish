@@ -1,4 +1,4 @@
-import { IDescriptor } from './Descriptor'
+import { IDescriptor } from './IDescriptor'
 
 export interface IDescriptorContinuous extends IDescriptor {
   defaultUnit: string,

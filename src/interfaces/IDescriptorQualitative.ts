@@ -1,5 +1,5 @@
-import { IDescriptor } from './Descriptor'
-import { ICharacterState } from './CharacterState'
+import { IDescriptor } from './IDescriptor'
+import { ICharacterState } from './ICharacterState'
 
 export interface IDescriptorQualitative extends IDescriptor {
   characterStates: Array<ICharacterState>,

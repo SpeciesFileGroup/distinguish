@@ -1,4 +1,4 @@
-import { IDescriptor } from './Descriptor'
+import { IDescriptor } from './IDescriptor'
 
 export interface IDescriptorSample extends IDescriptor {
   defaultUnit: string,
