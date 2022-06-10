@@ -1,6 +1,9 @@
 <template>
   <div>
-    <h2>Remaining ({{ remaining.length }})</h2>
+    <div>
+      <h2>Remaining ({{ remaining.length }})</h2>
+      <FilterRow />
+    </div>
     <ul>
       <PanelRowItem
         v-for="item in remaining"
@@ -17,6 +20,7 @@ import { computed } from 'vue'
 import { useObservationMatrixStore } from '@/store/observationMatrices'
 import { IRow } from '@/interfaces'
 import PanelRowItem from './PanelRowItem.vue'
+import FilterRow from '../Filter/FilterRow.vue'
 
 const store = useObservationMatrixStore()
 const remaining = computed<Array<IRow>>(() => store.getRemaining)

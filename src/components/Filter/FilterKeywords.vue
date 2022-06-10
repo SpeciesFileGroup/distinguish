@@ -14,7 +14,7 @@
       <h3>Keywords</h3>
     </template>
     <template #body>
-      <ul>
+      <ul class="list-none p-0">
         <li
           v-for="({ keywordId, name }) in store.getKeywords"
           :key="keywordId"
@@ -45,7 +45,7 @@ const filterStore = useFilterStore()
 const isModalVisible = ref(false)
 
 const keywordIds: WritableComputedRef<number[]> = computed({
-  get: ():number[] => filterStore.getKeywordIds,
+  get: (): Array<number> => filterStore.getKeywordIds,
 
   set: (value) => {
     filterStore.$patch({ keywordIds: value })

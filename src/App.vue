@@ -37,6 +37,8 @@ import { computed } from 'vue'
 import { useSettingsStore } from './store/settings'
 import { useObservationMatrixStore } from './store/observationMatrices'
 import { useFilterStore } from './store/filter'
+import { IAPIConfiguration } from './interfaces'
+import { useAPIConfig } from './composables/useAPIConfig'
 import CitationLabel from './components/CitationLabel.vue'
 import HeaderBar from './components/Header/HeaderBar.vue'
 import PanelEliminated from './components/Panel/PanelEliminated.vue'
@@ -46,13 +48,12 @@ import VGrid from './components/UI/VGrid.vue'
 import VSpinner from '@/components/UI/VSpinner.vue'
 
 interface Props {
-  startingMatrixId: number,
-  visibleMatrices: Array<number>
+  observationMatrixId: number,
+  apiConfig: IAPIConfiguration
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  startingMatrixId: 1,
-  visibleMatrices: () => []
+  observationMatrixId: 1
 })
 
 const settingStore = useSettingsStore()
@@ -61,8 +62,16 @@ const store = useObservationMatrixStore()
 const isLoading = computed(() => settingStore.getIsLoading)
 const gridLayout = computed(() => settingStore.getLayout)
 
-settingStore.setObservationMatrixId(props.startingMatrixId)
-settingStore.checkUpdate()
+const initialize = () => {
+  const api = useAPIConfig()
+
+  api.updatePreferences(props.apiConfig)
+
+  settingStore.setObservationMatrixId(props.observationMatrixId)
+  settingStore.checkUpdate()
+}
+
+initialize()
 
 filterStore.$subscribe(_ => {
   if (settingStore.shouldUpdate) {

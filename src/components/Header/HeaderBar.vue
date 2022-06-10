@@ -1,6 +1,6 @@
 <template>
   <div class="header-bar">
-    <MatrixSelector />
+    <div />
 
     <MenuList>
       <MenuListItem>
@@ -44,7 +44,6 @@ import SettingRefresh from '../Setting/SettingRefresh.vue'
 import MenuList from '../UI/Menu/MenuList.vue'
 import MenuListItem from '../UI/Menu/MenuItem.vue'
 import GridToggle from './GridToggle.vue'
-import MatrixSelector from './MatrixSelector.vue'
 import ResetButton from './ResetButton.vue'
 
 </script>

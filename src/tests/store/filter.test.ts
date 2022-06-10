@@ -45,9 +45,9 @@ describe('Filter Store', () => {
   })
 
   it ('get otu filter', () => {
-    const filter = store.getOtuFilter
+    const filter = store.getRowIds
 
-    expect(filter).toStrictEqual(store.otuFilter)
+    expect(filter).toStrictEqual(store.getRowIds)
   })
 
   it ('set and get descriptors by id', () => {

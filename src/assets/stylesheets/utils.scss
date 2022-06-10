@@ -14,7 +14,15 @@
   margin-right: 0.5em;
 }
 
+.p-0 {
+  padding: 0;
+}
+
 .link {
   color: var(--link-color);
   cursor: pointer;
+}
+
+.list-none {
+  list-style: none;
 }

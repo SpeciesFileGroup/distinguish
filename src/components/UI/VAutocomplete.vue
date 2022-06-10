@@ -46,7 +46,7 @@
 
 <script setup lang="ts">
 import { onMounted, ref, watch, reactive, computed } from 'vue'
-import makeRequest from '@/utils/makeRequest'
+import { useRequest } from '@/composables/useRequest'
 
 interface Props {
   autofocus?: boolean
@@ -145,7 +145,7 @@ const requestRecords = async () => {
   state.list = []
   state.isSearching = true
 
-  const { data } = await makeRequest.get(props.url, { 
+  const { data } = await useRequest().get(props.url, { 
     params: {
       ...props.params,
       [props.queryParam]: autocompleteValue.value
