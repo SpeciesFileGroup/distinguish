@@ -1,5 +1,5 @@
 {
-  "name": "distinguish",
+  "name": "@sfgrp/distinguish",
   "private": false,
   "version": "0.0.1",
   "files": ["dist"],
@@ -11,6 +11,17 @@
       "require": "./dist/interactive-key.umd.js"
     }
   },
+  "homepage": "https://github.com/SpeciesFileGroup/distinguish",
+  "license": "NCSA",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SpeciesFileGroup/distinguish.git"
+  },
+  "keywords": [
+    "species file group",
+    "interactive key",
+    "distinguish"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
