@@ -23,7 +23,7 @@ Interactive keys are tools used by taxonomists and others to diagnosis or sepera
 
 ## Technical
 
-Distinguish is a <TODO> module. It is inserted into a webpage via configuration.  All functionality is driven from a single, parameterized API call (`/api/v1/...`).  
+Distinguish is a `<TODO>` module. It is inserted into a webpage via configuration.  All functionality is driven from a single, parameterized API call (`/api/v1/...`).  
 
 ## Install
 
@@ -35,7 +35,7 @@ npm install @sfgrp/distinguish
 ```
 As an alternative you can use the Yarn CLI command:
 ```bash
-yarn add distinguish
+yarn add @sfgrp/distinguish
 ```
 
 ### CDN

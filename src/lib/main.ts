@@ -22,7 +22,7 @@ function parseElementOptions (element: HTMLElement): { observationMatrixId: numb
   return {
     observationMatrixId: Number(element.getAttribute('data-observation-matrix-id')),
     apiConfig: {
-      baseURL: element.getAttribute('data-api-url') || '',
+      baseURL: element.getAttribute('data-base-url') || '',
       projectToken: element.getAttribute('data-project-token') || undefined,
       projectId: Number(element.getAttribute('data-project-id')) || undefined,
       userToken: element.getAttribute('data-user-token') || undefined,

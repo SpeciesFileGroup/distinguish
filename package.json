@@ -1,6 +1,6 @@
 {
   "name": "distingish",
-  "private": true,
+  "private": false,
   "version": "0.0.1",
   "files": ["dist"],
   "main": "./dist/interactive-key.umd.js",

@@ -1,5 +1,5 @@
 <template>
-  <div id="vue-interactive-keys">
+  <div class="vue-interactive-keys">
     <TitleKey />
 
     <HeaderBar class="margin-medium-bottom" />
