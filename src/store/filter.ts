@@ -31,7 +31,13 @@ export const useFilterStore = defineStore('filter', {
 
     getSorting: state => state.sorting,
 
-    getDescriptorValueById: (state) => (id: number): DescriptorFilter => state.descriptors[id] || '',
+    getDescriptorValueById: state => (id: number): DescriptorFilter => {
+      const value = state.descriptors[id]
+
+      return typeof value === 'boolean'
+        ? value
+        : value || ''
+    },
 
     getFilterParams: state => {
       const descriptorsParam = Object

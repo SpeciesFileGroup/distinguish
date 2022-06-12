@@ -2,6 +2,9 @@
   <VModal container-class="descriptor-modal">
     <template #header>
       <h3>{{ descriptor.name }}</h3>
+      <span v-if="descriptor.description">
+        {{ descriptor.description }}
+      </span>
     </template>
     <template #body>
       <div class="descriptor-modal__depiction">

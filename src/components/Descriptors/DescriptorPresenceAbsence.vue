@@ -1,8 +1,13 @@
 <template>
   <descriptor-container :descriptor="descriptor">
     <select v-model="descriptorValue">
-      <option :value="true">Present</option>
-      <option :value="false">Absent</option>
+      <option />
+      <option :value="true">
+        Present
+      </option>
+      <option :value="false">
+        Absent
+      </option>
     </select>
   </descriptor-container>
 </template>
@@ -19,16 +24,22 @@ const props = defineProps<{
 
 const useStore = useFilterStore()
 
-const descriptorValue: WritableComputedRef<boolean> = computed({
+const descriptorValue: WritableComputedRef<boolean | undefined> = computed({
   get: (): boolean => {
-    return Boolean(useStore.getDescriptorValueById(props.descriptor.descriptorId))
+    return useStore.getDescriptorValueById(props.descriptor.descriptorId) as boolean
   },
 
-  set: (e: any) => {
-    useStore.setDescriptor({ 
-      descriptorId: props.descriptor.descriptorId,
-      value: e.target.value
-    })
+  set: (value: boolean) => {
+    const { descriptorId } = props.descriptor
+
+    if (typeof value === 'boolean') {
+      useStore.setDescriptor({
+        descriptorId: descriptorId,
+        value: Boolean(value)
+      })
+    } else {
+      useStore.removeDescriptor(descriptorId)
+    }
   }
 })
 </script>
