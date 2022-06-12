@@ -44,7 +44,7 @@ You can copy and paste the following tags into your HTML file.
 
 ```html
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@sfgrp/distinguish/dist/style.css">
-<script src="https://cdn.jsdelivr.net/npm/@sfgrp/distinguish/dist/distinguish.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@sfgrp/distinguish/dist/distinguish.umd.js"></script>
 ```
 
 ## Usage

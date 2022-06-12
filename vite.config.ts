@@ -23,7 +23,7 @@ export default defineConfig({
     lib: {
       entry: path.resolve(__dirname, 'src/lib/main.ts'),
       name: 'InteractiveKey',
-      fileName: format => `interactive-key.${format}.js`
+      fileName: format => `distinguish.${format}.js`
     },
     rollupOptions: {
       external: ['vue', 'pinia'],
