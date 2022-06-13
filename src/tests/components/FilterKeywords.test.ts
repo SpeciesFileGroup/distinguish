@@ -24,13 +24,13 @@ describe('Filter keywords', () => {
     }
   }
 
-  it('opens modal', async () => {
+  it('disable button if there are no keywords ', async () => {
     const { container } = setup() 
     const openButton = container.querySelector('button') as HTMLButtonElement
 
     await userEvent.click(openButton)
 
-    expect(container.querySelector('.modal-body')).not.toBe(null)
+    expect(container.querySelector('.modal-body')).toBe(null)
   })
 
   it('displays a list of keywords and toggle lenguage', async () => {
