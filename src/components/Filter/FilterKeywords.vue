@@ -2,6 +2,11 @@
   <VBtn
     color="primary"
     size="medium"
+    :disabled="!store.getKeywords.length"
+    :title="!store.getKeywords.length
+      ? 'No tags defined.'
+      : ''
+    "
     @click="isModalVisible = true"
   >
     Keyword

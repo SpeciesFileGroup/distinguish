@@ -2,6 +2,7 @@
   <button
     type="button"
     class="btn"
+    :disabled="disabled"
     :class="buttonClasses"
   >
     <slot />
@@ -13,7 +14,8 @@ import { computed } from 'vue'
 
 interface Props {
   color?: string,
-  size?: string
+  size?: string,
+  disabled?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -42,5 +44,10 @@ const buttonClasses = computed<Array<string>>(() => [
 
 .btn-medium-size {
   min-height: var(--btn-medium-size);
+}
+
+.btn:disabled {
+  background-color: var(--bg-disabled-color);
+  color: var(--disabled-color)
 }
 </style>
