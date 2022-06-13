@@ -14,8 +14,8 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { IDescriptorContinuous } from '../../interfaces';
-import { useFilterStore } from '../../store/filter'
+import { IDescriptorContinuous } from '@/interfaces'
+import { useFilterStore } from '@/store/filter'
 import DescriptorContainer from './DescriptorContainer.vue'
 
 const props = defineProps<{
@@ -26,10 +26,17 @@ const useStore = useFilterStore()
 const fieldValue = ref<string>(String(useStore.getDescriptorValueById(props.descriptor.descriptorId)))
 
 const setDescriptorValue = () => {
-  useStore.setDescriptor({ 
-    descriptorId: props.descriptor.descriptorId,
-    value: fieldValue.value
-  })
+  const { descriptorId } = props.descriptor
+  const value = fieldValue.value.trim()
+
+  if (value) {
+    useStore.setDescriptor({
+      descriptorId: descriptorId,
+      value
+    })
+  } else {
+    useStore.removeDescriptor(descriptorId)
+  }
 }
 
 </script>

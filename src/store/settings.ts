@@ -9,7 +9,8 @@ interface ISettings {
   refreshOnlyTaxa: boolean,
   rowFilter: boolean,
   shouldUpdate: boolean,
-  observationMatrixId?: number
+  observationMatrixId?: number,
+  errorMessage: string,
 }
 
 export const useSettingsStore = defineStore('settings', {
@@ -20,10 +21,13 @@ export const useSettingsStore = defineStore('settings', {
     refreshOnlyTaxa: false,
     rowFilter: true,
     shouldUpdate: true,
-    observationMatrixId: undefined
+    observationMatrixId: undefined,
+    errorMessage: ''
   }),
 
   getters: {
+    getErrorMessage: (state): string => state.errorMessage,
+
     getIsLoading: (state): boolean => state.isLoading,
     
     getLayout: (state): string => state.gridLayout,
@@ -66,9 +70,10 @@ export const useSettingsStore = defineStore('settings', {
           opt: { 
             refreshOnlyTaxa: this.refreshOnlyTaxa
           }
-        }).then(_ => {
-          this.isLoading = false
         })
+        .then(_ => this.errorMessage = '' )
+        .catch(error => this.errorMessage = error.message)
+        .finally(() => this.isLoading = false)
       }
     }
   }

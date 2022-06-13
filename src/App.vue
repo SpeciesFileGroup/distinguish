@@ -30,7 +30,6 @@ export default {
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useSettingsStore } from './store/settings'
-import { useObservationMatrixStore } from './store/observationMatrices'
 import { useFilterStore } from './store/filter'
 import { IAPIConfiguration } from './interfaces'
 import { useAPIConfig } from './composables/useAPIConfig'
@@ -47,13 +46,9 @@ interface Props {
   apiConfig: IAPIConfiguration
 }
 
-const props = withDefaults(defineProps<Props>(), {
-  observationMatrixId: 1
-})
-
+const props = defineProps<Props>()
 const settingStore = useSettingsStore()
 const filterStore = useFilterStore()
-const store = useObservationMatrixStore()
 const isLoading = computed(() => settingStore.getIsLoading)
 const gridLayout = computed(() => settingStore.getLayout)
 

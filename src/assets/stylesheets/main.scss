@@ -48,4 +48,8 @@ body {
     border-color: var(--border-color);
     background-color: white;
   }
+
+  .error-message {
+    color: var(--error-color);
+  }
 }

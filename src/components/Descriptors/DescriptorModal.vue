@@ -5,6 +5,9 @@
       <span v-if="descriptor.description">
         {{ descriptor.description }}
       </span>
+      <i v-else>
+        No further description available.
+      </i>
     </template>
     <template #body>
       <div class="descriptor-modal__depiction">

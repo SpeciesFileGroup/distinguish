@@ -1,6 +1,6 @@
 <template>
   <div class="header-bar">
-    <div />
+    <ErrorMessage />
 
     <MenuList>
       <MenuListItem>
@@ -45,6 +45,7 @@ import MenuList from '../UI/Menu/MenuList.vue'
 import MenuListItem from '../UI/Menu/MenuItem.vue'
 import GridToggle from './GridToggle.vue'
 import ResetButton from './ResetButton.vue'
+import ErrorMessage from './ErrorMessage.vue'
 
 </script>
 

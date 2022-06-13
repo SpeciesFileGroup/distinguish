@@ -1,7 +1,7 @@
 {
   "name": "@sfgrp/distinguish",
   "private": false,
-  "version": "0.0.5",
+  "version": "0.0.6",
   "files": ["dist"],
   "main": "./dist/distinguish.umd.js",
   "module": "./dist/distinguish.es.js",
