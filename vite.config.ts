@@ -22,7 +22,7 @@ export default defineConfig({
   build:{
     lib: {
       entry: path.resolve(__dirname, 'src/lib/main.ts'),
-      name: 'InteractiveKey',
+      name: 'Distinguish',
       fileName: format => `distinguish.${format}.js`
     },
     rollupOptions: {

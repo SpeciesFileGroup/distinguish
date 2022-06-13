@@ -1,14 +1,14 @@
 {
   "name": "@sfgrp/distinguish",
   "private": false,
-  "version": "0.0.3",
+  "version": "0.0.4",
   "files": ["dist"],
-  "main": "./dist/interactive-key.umd.js",
-  "module": "./dist/interactive-key.es.js",
+  "main": "./dist/distinguish.umd.js",
+  "module": "./dist/distinguish.es.js",
   "exports": {
     ".": {
-      "import": "./dist/interactive-key.es.js",
-      "require": "./dist/interactive-key.umd.js"
+      "import": "./dist/distinguish.es.js",
+      "require": "./dist/distinguish.umd.js"
     }
   },
   "publishConfig": {
