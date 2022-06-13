@@ -4,26 +4,24 @@ An interactive key engine that feeds off of [TaxonWorks](https://taxonworks.org)
 
 ## Quick start
 
-* Create a github repository.
-* ... create page
-* ... add module
-* ... add configs TOKEN/API
-* ... add action
-* ... visit page
+See [Example page](#example-page].
 
 ## Details
 
-Interactive keys are tools used by taxonomists and others to diagnosis or seperate one taxon from another. Distinguish provides an embedable, web-based, interactive key interface. The key uses logic (the "engine") and data managed in an instance of TaxonWorks.  Keys can served locally (e.g. by opening a file in your browser) or on websites. They require an internet connection.
+Interactive keys are tools used by taxonomists and others to diagnosis or seperate one taxon (e.g. a species) from others. Distinguish provides an embedable, web-based, interactive key interface. The key uses logic (the "engine") and data managed in an instance of TaxonWorks.  Keys can served locally (e.g. by opening a file in your browser) or on websites. They require an internet connection.
 
 ## Features
 
-* ...
-* multi-language support
-* ... 
+* Figure descriptors and observations.
+* Multi-language support.
+* Filter by tagged set.
+* Filter by rank (e.g. "Family")\
+* Qualitative, quantitative descriptors.
+* Local (file in your browser) or server based (both require internet keys).
 
 ## Technical
 
-Distinguish is a `<TODO>` module. It is inserted into a webpage via configuration.  All functionality is driven from a single, parameterized API call (`/api/v1/...`).  
+Distinguish is a node module. All functionality is driven from a single, parameterized API call.
 
 ## Install
 
@@ -40,7 +38,6 @@ yarn add @sfgrp/distinguish
 
 ### CDN
 You can copy and paste the following tags into your HTML file.
-
 
 ```html
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@sfgrp/distinguish/dist/style.css">
@@ -65,8 +62,7 @@ To pass the options you need to add the prefix `data-` and write the option in k
 ```
 
 ### Imperative
-You can initialize it by createInteractiveKey function
-
+You can initialize it by `createInteractiveKey` function
 
 ```html
 <div id="interactive-key"></div>
@@ -91,12 +87,43 @@ const app = createInteractiveKey('#interactive-key', options)
   }
 }
 ```
-  
-## Building a key (in TaxonWorks)
+### Example page
+This uses the [CDN](#cdn) and [Declaritive](#declarative) approach.
+* Copy the text below into a file called `index.html`.
+* Configure the `data-` options to point to your key.
+* Open that file in your browser.
 
-Distinguish is based of interfaces available inside TaxonWorks.  Those interfaces have many additional features facilitating curation, annotations, expansion, and editing of the underlying data.
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@sfgrp/distinguish@latest/dist/style.min.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Distinguish</title>
+  </head>
+  <body>
+    <div 
+      data-interactive-key="true"
+      data-observation-matrix-id="1"
+      data-project-token="yourprojecttoken"
+      data-base-url="https://<your.taxonworks.server>/api/v1"
+    ></div>
+    <script src="https://cdn.jsdelivr.net/npm/@sfgrp/distinguish@latest/dist/distinguish.umd.min.js"></script>
+  </body>
+</html>
+```
+
+### Deploying a key on-line
+[GitHub Pages](https://pages.github.com/) is perhaps the quickest way to depoloy your key if you don't have access to your own server.
+* Follow instructions there to setup your repository
+* Add a page to that repository that looks like the [example page](#example-page)
+
+## Building a key (in TaxonWorks)
+Distinguish is based of interfaces available inside TaxonWorks. Those interfaces have many additional features facilitating the addition and management of images, curation, annotations, expansion, and editing of the underlying data. To start editing a key find a [TaxonWorks provider](https://docs.taxonworks.org/guide/start-a-project.html#finding-a-collaborating-provider), or [install your own instance](https://github.com/SpeciesFileGroup/install_taxonworks).  Need help?  [Chat on Gitter](https://gitter.im/SpeciesFileGroup/taxonworks) or [join a TaxonWorks event](https://speciesfilegroup.org/events.html).
 
 ## Contributing
-
 .. TODO .. simplify, add CONTRIBUTING.md
-  
+
+
