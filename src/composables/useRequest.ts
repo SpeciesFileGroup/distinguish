@@ -20,7 +20,7 @@ export const useRequest = (instanceConfiguration: object = {}) => {
     ...instanceConfiguration
   }
   
-  if (!projectToken || !(projectId && userToken)) {
+  if (!projectToken || !(projectId && userToken) && csrfToken) {
     const headers: object = { 'X-CSRF-Token': csrfToken }
 
     Object.assign(axiosConfiguration, { headers })

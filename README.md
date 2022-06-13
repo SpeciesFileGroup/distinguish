@@ -56,12 +56,12 @@ Add `data-interactive-key="true"` attribute to input elements to initialize it.
 To pass the options you need to add the prefix `data-` and write the option in kebab-case, like the following example:
 
 ```html
-<input 
+<div 
   data-interactive-key="true"
   data-observation-matrix-id="1"
   data-project-token="xQ9bKrhfQtHYfro9t6YY0A"
   data-base-url="https://sfg.taxonworks.org/api/v1"
->
+></div>
 ```
 
 ### Imperative
