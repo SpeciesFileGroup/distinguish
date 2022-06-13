@@ -1,10 +1,10 @@
 # distinguish
 
-An interactive key engine that feeds off of [TaxonWorks](https://taxonworks.org)' [API](https://api.taxonworks.org).
+An interactive key engine that feeds off of [TaxonWorks](https://taxonworks.org)' [API](https://api.taxonworks.org).  Distinguish is a product of the [Species File Group](https://speciesfilegroup.org) and its collaborators.
 
 ## Quick start
 
-See [Example page](#example-page].
+See [Example page](#example-page).
 
 ## Details
 
@@ -15,9 +15,9 @@ Interactive keys are tools used by taxonomists and others to diagnosis or sepera
 * Figure descriptors and observations.
 * Multi-language support.
 * Filter by tagged set.
-* Filter by rank (e.g. "Family")\
+* Filter by rank (e.g. "Family" or "Genus").
 * Qualitative, quantitative descriptors.
-* Local (file in your browser) or server based (both require internet keys).
+* Local (file in your browser) or server-based (both require internet access).
 
 ## Technical
 
@@ -45,7 +45,7 @@ You can copy and paste the following tags into your HTML file.
 ```
 
 ## Usage
-There are two ways to setup Interactive Keys. The easiest way is to let InteractiveKey auto discover your inputs automatically. For that, you simply need to provide a data attribute to your input.
+There are two ways to setup Interactive Keys. The easiest way is to let InteractiveKey auto discover your inputs automatically. For that, you simply need to provide a data attribute on your element.
 
 ### Declarative
 
@@ -116,14 +116,15 @@ This uses the [CDN](#cdn) and [Declaritive](#declarative) approach.
 ```
 
 ### Deploying a key on-line
-[GitHub Pages](https://pages.github.com/) is perhaps the quickest way to depoloy your key if you don't have access to your own server.
-* Follow instructions there to setup your repository
-* Add a page to that repository that looks like the [example page](#example-page)
+[GitHub Pages](https://pages.github.com/) is perhaps the quickest way to deploy your key if you don't have access to your own server.
+* Follow instructions above to setup your repository.
+* Add a page to that repository that looks like the [example page](#example-page).
 
 ## Building a key (in TaxonWorks)
 Distinguish is based of interfaces available inside TaxonWorks. Those interfaces have many additional features facilitating the addition and management of images, curation, annotations, expansion, and editing of the underlying data. To start editing a key find a [TaxonWorks provider](https://docs.taxonworks.org/guide/start-a-project.html#finding-a-collaborating-provider), or [install your own instance](https://github.com/SpeciesFileGroup/install_taxonworks).  Need help?  [Chat on Gitter](https://gitter.im/SpeciesFileGroup/taxonworks) or [join a TaxonWorks event](https://speciesfilegroup.org/events.html).
 
 ## Contributing
-.. TODO .. simplify, add CONTRIBUTING.md
+See [CONTRIBUTING.md](CONTRIBUTING.md).
 
-
+## Lisence
+Distinguish is open source and is presently available under the [University of Illinois/NCSA Open Source License](https://en.wikipedia.org/wiki/University_of_Illinois/NCSA_Open_Source_License).
