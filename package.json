@@ -1,7 +1,7 @@
 {
   "name": "@sfgrp/distinguish",
   "private": false,
-  "version": "0.0.2",
+  "version": "0.0.3",
   "files": ["dist"],
   "main": "./dist/interactive-key.umd.js",
   "module": "./dist/interactive-key.es.js",
