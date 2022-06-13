@@ -11,11 +11,11 @@ export const useRequest = (instanceConfiguration: object = {}) => {
   } = useAPIConfig()
 
   const axiosConfiguration: object = {
-    baseURL: baseURL.value,
+    baseURL: baseURL,
     params: {
-      project_id: projectId?.value,
-      project_token: projectToken?.value,
-      token: userToken?.value
+      project_id: projectId,
+      project_token: projectToken,
+      token: userToken
     },
     ...instanceConfiguration
   }

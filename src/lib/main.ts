@@ -64,7 +64,6 @@ function createInteractiveKey (element: HTMLElement | string, opt: { apiConfig: 
 window.addEventListener('DOMContentLoaded', autoDiscover)
 
 export { 
-  VueInteractiveKey,
   createInteractiveKey,
   discoverInteractiveKey
 }

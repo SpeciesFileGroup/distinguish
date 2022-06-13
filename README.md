@@ -48,7 +48,7 @@ You can copy and paste the following tags into your HTML file.
 ```
 
 ## Usage
-There are three ways to setup Interactive Keys. The easiest way is to let InteractiveKey auto discover your inputs automatically. For that, you simply need to provide a data attribute to your input.
+There are two ways to setup Interactive Keys. The easiest way is to let InteractiveKey auto discover your inputs automatically. For that, you simply need to provide a data attribute to your input.
 
 ### Declarative
 
@@ -72,38 +72,11 @@ You can initialize it by createInteractiveKey function
 <div id="interactive-key"></div>
 ```
 ```javascript
-import createInteractiveKey from '@sfgrp/distinguish'
+import { createInteractiveKey } from '@sfgrp/distinguish'
 import '@sfgrp/distinguish/dist/style.css'
 
-const app = new createInteractiveKey('#interactive-key', options)
+const app = createInteractiveKey('#interactive-key', options)
 ```
-
-### Vue component (Vue 3.x)
-*Pinia is required in your application to use this component*
-
-```javascript
-<template>
-  <VueInteractiveKey
-    :observationMatrixId="observationId"
-    :api-config="config"
-  />
-</template>
-
-<script setup>
-import { ref, reactive } from 'vue'
-import { VueInteractiveKey } from '@sfgrp/distinguish'
-import '@sfgrp/distinguish/dist/style.css'
-
-const observationMatrixId = ref(1)
-const config = ref({
-  baseURL: 'http://localhost:3000/api/v1/',
-  projectId: undefined,
-  projectToken: '5kshojqRCr83fM3MW7OA9g',
-  userToken: undefined
-})
-</script>
-```
-
 
 ### Options object
 ```javascript

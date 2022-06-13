@@ -26,13 +26,10 @@ export default defineConfig({
       fileName: format => `distinguish.${format}.js`
     },
     rollupOptions: {
-      external: ['vue', 'pinia'],
+      external: [],
       output: {
         dir: "dist",
-        globals: {
-          vue: 'Vue',
-          pinia: 'pinia'
-        }
+        globals: {}
       }
     }
   }

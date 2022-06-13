@@ -1,12 +1,11 @@
 import { IAPIConfiguration } from "@/interfaces"
-import { reactive, toRefs } from "vue"
 
-const state = reactive<IAPIConfiguration>({
+const state: IAPIConfiguration = {
   baseURL: '',
   projectId: undefined,
   projectToken: undefined,
   userToken: undefined
-})
+}
 
 export const useAPIConfig = () => {
   const updatePreferences = (preferences: IAPIConfiguration) => {
@@ -14,7 +13,7 @@ export const useAPIConfig = () => {
   }
 
   return {
-    ...toRefs(state),
+    ...state,
     updatePreferences
   }
 }
