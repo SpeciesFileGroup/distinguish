@@ -121,10 +121,14 @@ This uses the [CDN](#cdn) and [Declaritive](#declarative) approach.
 * Add a page to that repository that looks like the [example page](#example-page).
 
 ### Troubleshooting
+If nothing loads (blank page):
+* Open your Browser's development tools console panel. Reload the page. Errors will appear in red.
+
 If when loaded or during use you see: 
 * `Request failed with status code 401` - The API configuration parameters are incorrect
 * `Request failed with status code 404` - The API URL path or Token is incorrect (the base of the API URL is correct)
 * `Network error` - The key can not connect to the internet
+
 
 ## Building a key (in TaxonWorks)
 Distinguish is based of interfaces available inside TaxonWorks. Those interfaces have many additional features facilitating the addition and management of images, curation, annotations, expansion, and editing of the underlying data. To start editing a key find a [TaxonWorks provider](https://docs.taxonworks.org/guide/start-a-project.html#finding-a-collaborating-provider), or [install your own instance](https://github.com/SpeciesFileGroup/install_taxonworks).  Need help?  [Chat on Gitter](https://gitter.im/SpeciesFileGroup/taxonworks) or [join a TaxonWorks event](https://speciesfilegroup.org/events.html).
