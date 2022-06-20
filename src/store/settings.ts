@@ -1,5 +1,6 @@
-import { useObservationMatrixStore } from './observationMatrices';
-import { useFilterStore } from '@/store/filter';
+import { IAPIConfiguration } from '@/interfaces/IAPIConfiguration'
+import { useObservationMatrixStore } from './observationMatrices'
+import { useFilterStore } from '@/store/filter'
 import { defineStore } from "pinia"
 
 interface ISettings {
@@ -11,6 +12,7 @@ interface ISettings {
   shouldUpdate: boolean,
   observationMatrixId?: number,
   errorMessage: string,
+  apiConfig: IAPIConfiguration
 }
 
 export const useSettingsStore = defineStore('settings', {
@@ -22,7 +24,13 @@ export const useSettingsStore = defineStore('settings', {
     rowFilter: true,
     shouldUpdate: true,
     observationMatrixId: undefined,
-    errorMessage: ''
+    errorMessage: '',
+    apiConfig: {
+      baseURL: '',
+      projectId: undefined,
+      projectToken: undefined,
+      userToken: undefined
+    }
   }),
 
   getters: {
@@ -38,7 +46,9 @@ export const useSettingsStore = defineStore('settings', {
 
     getShouldUpdate: (state): boolean => state.shouldUpdate,
 
-    getObservationMatrixId: (state): number | undefined => state.observationMatrixId
+    getObservationMatrixId: (state): number | undefined => state.observationMatrixId,
+
+    getAPIConfig: (state): IAPIConfiguration => state.apiConfig
   },
 
   actions: {
@@ -52,6 +62,10 @@ export const useSettingsStore = defineStore('settings', {
 
     setRefreshOnlyTaxa (value: boolean) {
       this.refreshOnlyTaxa = value
+    },
+
+    setAPIConfig (config: IAPIConfiguration) {
+      this.apiConfig = config
     },
 
     checkUpdate () {

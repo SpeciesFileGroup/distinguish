@@ -32,7 +32,6 @@ import { computed } from 'vue'
 import { useSettingsStore } from './store/settings'
 import { useFilterStore } from './store/filter'
 import { IAPIConfiguration } from './interfaces'
-import { useAPIConfig } from './composables/useAPIConfig'
 import HeaderBar from './components/Header/HeaderBar.vue'
 import PanelEliminated from './components/Panel/PanelEliminated.vue'
 import PanelRemaining from './components/Panel/PanelRemaining.vue'
@@ -53,10 +52,7 @@ const isLoading = computed(() => settingStore.getIsLoading)
 const gridLayout = computed(() => settingStore.getLayout)
 
 const initialize = () => {
-  const api = useAPIConfig()
-
-  api.updatePreferences(props.apiConfig)
-
+  settingStore.setAPIConfig(props.apiConfig)
   settingStore.setObservationMatrixId(props.observationMatrixId)
   settingStore.checkUpdate()
 }

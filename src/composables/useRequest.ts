@@ -1,14 +1,15 @@
-import { useAPIConfig } from '@/composables/useAPIConfig'
+import { useSettingsStore } from '@/store/settings'
 import axios from 'axios'
 
 export const useRequest = (instanceConfiguration: object = {}) => {
+  const store = useSettingsStore()
   const { 
     baseURL,
     projectId,
     projectToken,
     userToken,
     csrfToken
-  } = useAPIConfig()
+  } = store.getAPIConfig
 
   const axiosConfiguration: object = {
     baseURL: baseURL,
