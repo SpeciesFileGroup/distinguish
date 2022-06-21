@@ -54,7 +54,7 @@ import ErrorMessage from './ErrorMessage.vue'
   background-color: var(--bg-panel-color);
   padding: 1em;
   box-shadow: rgb(36 37 38 / 8%) 4px 4px 15px 0px;
-  border-radius: 0.9rem;
+  border-bottom: 1px solid var(--border-color);
   display: flex;
   justify-content: space-between;
   align-items: center;

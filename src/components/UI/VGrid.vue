@@ -13,6 +13,6 @@
   grid-row-gap: 0px;
   grid-gap: 1px;
   background-color: var(--border-color);
-  box-shadow: 0px 2px 2px 0px rgb(0 0 0 / 20%);
+  box-shadow: 0px 1px 1px 0px rgb(0 0 0 / 20%);
 }
 </style>
