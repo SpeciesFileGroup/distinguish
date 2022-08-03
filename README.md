@@ -88,7 +88,7 @@ const app = createInteractiveKey('#interactive-key', options)
 }
 ```
 ### Example page
-This uses the [CDN](#cdn) and [Declaritive](#declarative) approach.
+This uses the [CDN](#cdn) and [Declarative](#declarative) approach.
 * Copy the text below into a file called `index.html`.
 * Configure the `data-` options to point to your key.
 * Open that file in your browser.
