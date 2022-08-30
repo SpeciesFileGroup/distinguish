@@ -77,10 +77,10 @@ const app = createInteractiveKey('#interactive-key', options)
 ### Options object
 ```javascript
 {
-  observationMatrixId: ''       // Observation matrix ID
+  observationMatrixId: '',      // Observation matrix ID
   apiConfig: {
-    baseURL: ''                 // URL API, e.g https://sfg.taxonworks.org/api/v1
-    csrfToken: ''               // CSRF Token. Don't use it with authentification API params.
+    baseURL: '',                // URL API, e.g https://sfg.taxonworks.org/api/v1
+    csrfToken: '',              // CSRF Token. Don't use it with authentification API params.
     projectId: '',              // Project ID. Don't use it with projectToken.
     userToken: '',              // User Token. Don't use it with projectToken and csrfToken.
     projectToken: ''            // Project token. Don't use it with projectId and userToken.
