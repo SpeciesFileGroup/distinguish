@@ -1,5 +1,5 @@
-import { IDescriptor } from './IDescriptor'
+import { IDescriptor, IDescriptorState } from './index'
 
 export interface IDescriptorPresenceAbsence extends IDescriptor {
-  presence: boolean
+  states: Array<IDescriptorState>
 }

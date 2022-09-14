@@ -5,7 +5,7 @@ import {
   IDescriptorSample
 } from "../interfaces"
 import { Descriptor } from "../types"
-import { makeCharacterState } from './index';
+import { makeCharacterState, makeDescriptorState } from './index'
 
 import DescriptorTypes from '../constants/DescriptorTypes'
 
@@ -38,7 +38,7 @@ const makeDescriptorSample = (data: any): IDescriptorSample => ({
 
 const makeDescriptorPresenceAbsence = (data: any): IDescriptorPresenceAbsence => ({
   ...makeBaseDescriptor(data),
-  presence: data.precense
+  states: data.states.map((item: any) => makeDescriptorState(item))
 })
 
 const makeDescriptorQualitative = (data: any): IDescriptorQualitative => ({
@@ -47,7 +47,6 @@ const makeDescriptorQualitative = (data: any): IDescriptorQualitative => ({
 })
 
 export const makeDescriptor = (data: any): Descriptor => {
-
   switch (data.type) {
     case DescriptorTypes.Continuous:
       return makeDescriptorContinuos(data)

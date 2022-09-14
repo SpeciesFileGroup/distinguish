@@ -1,4 +1,5 @@
 import { ObservationMatrix } from '@/services/ObservationMatrix'
+import { StatusType } from '@/constants/StatusType';
 import { defineStore } from "pinia"
 import { Descriptor } from '../types'
 import {
@@ -7,7 +8,7 @@ import {
   makeRow,
   makeKeyword,
   makeLanguage
-} from '@/adapters';
+} from '@/adapters'
 import {
   IObservationMatrix,
   ICitation,
@@ -46,11 +47,11 @@ export const useObservationMatrixStore = defineStore('observationMatrix', {
 
     getDescriptorById: (state: IStore) => (id: number): Descriptor | undefined => state.descriptors.find((d: Descriptor) => d.descriptorId === id),
 
-    getDescriptorsUsed: (state: IStore): Array<Descriptor> => state.descriptors.filter(d => d.status === 'used'),
+    getDescriptorsUsed: (state: IStore): Array<Descriptor> => state.descriptors.filter((d: Descriptor) => d.status === StatusType.Used),
 
-    getDescriptorsUseless: (state: IStore): Array<Descriptor> => state.descriptors.filter(d => d.status === 'useless'),
+    getDescriptorsUseless: (state: IStore): Array<Descriptor> => state.descriptors.filter((d: Descriptor) => d.status === StatusType.Useless),
 
-    getDescriptorsUseful: (state: IStore): Array<Descriptor> => state.descriptors.filter(d => d.status === 'useful'),
+    getDescriptorsUseful: (state: IStore): Array<Descriptor> => state.descriptors.filter((d: Descriptor) => d.status === StatusType.Useful),
 
     getEliminated: (state: IStore): Array<IRow> => state.eliminated,
 

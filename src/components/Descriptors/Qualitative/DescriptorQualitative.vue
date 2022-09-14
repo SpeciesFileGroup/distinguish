@@ -12,7 +12,7 @@
         :selected="selectedOption(characterState)"
       >
         <span v-if="selectedOption(characterState)">></span>
-        <span v-if="characterState.status === 'useless'">-</span>
+        <span v-if="characterState.status === StatusType.Useless">-</span>
         {{ characterState.name }} ({{ characterState.numberOfObjects }})
       </option>
     </select>
@@ -22,6 +22,7 @@
 <script setup lang="ts">
 import { IDescriptorQualitative, ICharacterState } from '@/interfaces'
 import { useFilterStore } from '@/store/filter'
+import { StatusType } from '@/constants/StatusType'
 import DescriptorContainer from '../DescriptorContainer.vue'
 
 const props = defineProps<{ descriptor: IDescriptorQualitative }>()
