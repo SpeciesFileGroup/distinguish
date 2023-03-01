@@ -136,5 +136,5 @@ Distinguish is based of interfaces available inside TaxonWorks. Those interfaces
 ## Contributing
 See [CONTRIBUTING.md](CONTRIBUTING.md).
 
-## Lisence
+## License
 Distinguish is open source and is presently available under the [University of Illinois/NCSA Open Source License](https://en.wikipedia.org/wiki/University_of_Illinois/NCSA_Open_Source_License).
