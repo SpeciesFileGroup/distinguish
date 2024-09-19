@@ -1,28 +1,28 @@
 <template>
-  <transition name="modal">
+  <transition name="distinguish-modal">
     <div
-      class="modal-mask"
+      class="distinguish-modal-mask"
       @click="emit('close')"
       @key.esc="emit('close')"
     >
-      <div class="modal-wrapper">
+      <div class="distinguish-modal-wrapper">
         <div
-          class="modal-container"
+          class="distinguish-modal-container"
           :class="containerClass"
           :style="{ ...containerStyle }"
           @click.stop
         >
-          <div class="modal-header">
+          <div class="distinguish-modal-header">
             <div
-              class="modal-close"
+              class="distinguish-modal-close"
               @click="emit('close')"
             />
             <slot name="header" />
           </div>
-          <div class="modal-body">
+          <div class="distinguish-modal-body">
             <slot name="body" />
           </div>
-          <div class="modal-footer">
+          <div class="distinguish-modal-footer">
             <slot name="footer" />
           </div>
         </div>
@@ -54,140 +54,3 @@ const handleKeyboard = (event: KeyboardEvent) => {
 onMounted(() => document.addEventListener('keydown', handleKeyboard))
 onUnmounted(() => document.removeEventListener('keydown', handleKeyboard))
 </script>
-
-<style lang="scss">
-.modal-mask {
-  position: fixed;
-  z-index: 1099;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, .5);
-  display: table;
-  transition: opacity .3s ease;
-}
-
-.modal-wrapper {
-  display: table-cell;
-  vertical-align: middle;
-}
-
-.modal-container {
-  position: relative;
-  width: 300px;
-  margin: 0px auto;
-  padding: 20px 30px;
-  background-color: #fff;
-  border-radius: 2px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
-  transition: all .3s ease;
-  font-family: IBM Plex Sans, Helvetica, Arial, sans-serif;
-  max-height: 90vh;
-  overflow-y: auto;
-}
-
-.modal-close {
-  position: absolute;
-  cursor: pointer;
-  top:26px;
-  right:30px;
-  width: 10px;
-  height: 10px;
-  background-image: image-url('close.svg');
-  background-size: 10px 10px;
-  opacity: 0.4;
-}
-
-.modal-close:hover {
-  opacity: 1;
-}
-
-.modal-header h3 {
-  margin-top: 0;
-  color: #42b983;
-}
-
-.modal-body {
-  margin: 20px 0;
-}
-
-.modal-default-button {
-  float: right;
-}
-
-.modal-enter,
-.modal-leave-active {
-  opacity: 0;
-}
-
-.modal-enter .modal-container,
-.modal-leave-active .modal-container {
-  -webkit-transform: scale(1.1);
-  transform: scale(1.1);
-}
-
-.transparent-modal {
-  background-color: rgba(0,0,0,0.8) !important;
-
-  .modal-header {
-    h3 {
-      margin: 2em;
-      margin-right: 0px;
-      margin-top: 0px;
-      padding: 6px;
-      padding-left:12px;
-      border-radius: 3px;
-      background-color: rgba(0, 0, 0, .3);
-      color: rgba(255, 255, 255, .5);
-    }
-  }
-
-  .modal-close {
-    right: 42px;
-    top:30px;
-    color: rgba(255, 255, 255, .5);
-    background-image: image-url('w_close.svg');
-  }
-
-  .modal-container {
-    width: 70%;
-    position: relative;
-    background-color: transparent !important;
-    box-shadow: none;
-
-    .modal-body {
-      overflow: auto;
-      margin-right: 1em;
-      max-height: 80vh;
-
-      &::-webkit-scrollbar {
-        position: absolute;
-        right:40px;
-          -webkit-appearance: none;
-      }
-
-      &::-webkit-scrollbar:vertical {
-          width: 6px;
-      }
-
-      &::-webkit-scrollbar:horizontal {
-          height: 6px;
-      }
-
-      &::-webkit-scrollbar-thumb {
-          border-radius: 8px;
-          width: 11px;
-          height: 5px;
-          border: rgba(255, 255, 255, .5);
-          background-color: rgba(255, 255, 255, .5);
-      }
-
-      &::-webkit-scrollbar-track { 
-          background-color: rgba(0, 0, 0, .3);
-          border-radius: 8px; 
-      } 
-    }
-  }
-}
-</style>

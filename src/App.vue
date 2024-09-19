@@ -1,31 +1,21 @@
 <template>
-  <div class="vue-interactive-keys">
+  <div class="distinguish-app-container">
     <TitleKey />
 
     <HeaderBar />
 
-    <VGrid
-      class="w-100"
-      :class="gridLayout"
-    >
-      <PanelDescriptors class="panel-descriptors grid-panel" />
-      <PanelRemaining class="panel-remaining grid-panel" />
-      <PanelEliminated class="panel-eliminated grid-panel" />
+    <VGrid :class="gridLayout">
+      <PanelDescriptors />
+      <PanelRemaining :render="props.renderItem" />
+      <PanelEliminated :render="props.renderItem" />
     </VGrid>
 
     <VSpinner
       v-if="isLoading"
-      full-screen
       legend="Loading interactive key..."
     />
   </div>
 </template>
-
-<script lang="ts">
-export default {
-  name: 'InteractiveKey'
-}
-</script>
 
 <script setup lang="ts">
 import { computed } from 'vue'
@@ -41,9 +31,14 @@ import VSpinner from '@/components/UI/VSpinner.vue'
 import TitleKey from '@/components/Title/TitleKey.vue'
 
 interface Props {
-  observationMatrixId: number,
+  observationMatrixId: number
   apiConfig: IAPIConfiguration
+  renderItem?: Function
 }
+
+defineOptions({
+  name: 'Distinguish'
+})
 
 const props = defineProps<Props>()
 const settingStore = useSettingsStore()
@@ -59,10 +54,9 @@ const initialize = () => {
 
 initialize()
 
-filterStore.$subscribe(_ => {
+filterStore.$subscribe((_) => {
   if (settingStore.shouldUpdate) {
     settingStore.checkUpdate()
   }
 })
-
 </script>

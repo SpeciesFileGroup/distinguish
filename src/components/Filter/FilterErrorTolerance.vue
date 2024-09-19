@@ -2,7 +2,7 @@
   <div>
     <label
       for="languages"
-      class="d-block"
+      class="distinguish-input-label"
     >
       Error tolerance
     </label>
@@ -13,7 +13,7 @@
       role="listbox"
     >
       <option value="" />
-      <option 
+      <option
         v-for="value in ERROR_TOLERANCE_VALUES"
         :key="value"
         :value="value"
@@ -34,11 +34,8 @@ const filterStore = useFilterStore()
 const errorTolerance: WritableComputedRef<number | undefined> = computed({
   get: () => filterStore.getErrorTolerance,
 
-  set: error => {
+  set: (error) => {
     filterStore.setErrorTolerance(error)
   }
 })
-
-
-
 </script>

@@ -3,10 +3,10 @@
     :class="LAYOUT_MODES[gridLayout]"
     @click="setLayout"
   >
-    <VGrid class="grid-icon">
-      <div class="panel-descriptors" />
-      <div class="panel-remaining" />
-      <div class="panel-eliminated" />
+    <VGrid class="distinguish-grid-icon">
+      <div class="distinguish-panel-descriptors" />
+      <div class="distinguish-panel-remaining" />
+      <div class="distinguish-panel-eliminated" />
     </VGrid>
   </VBtn>
 </template>
@@ -26,19 +26,4 @@ const setLayout = () => {
     gridLayout: LAYOUT_MODES[gridLayout.value]
   })
 }
-
 </script>
-
-<style lang="scss">
-.grid-icon {
-  width: 20px;
-  height: 12px;
-  border: 2px solid transparent;
-  background-color: transparent;
-  grid-gap: 2px;
-
-  > div {
-    background-color: white;
-  }
-}
-</style>

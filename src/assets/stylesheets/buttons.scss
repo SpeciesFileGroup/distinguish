@@ -1,0 +1,18 @@
+.distinguish-btn {
+  border-radius: 8px;
+  border: none;
+}
+
+.distinguish-btn-primary-color {
+  background-color: var(--distinguish-primary-color);
+  color: var(--distinguish-primary-content-color);
+}
+
+.distinguish-btn-medium-size {
+  min-height: var(--distinguish-btn-medium-size);
+}
+
+.distinguish-btn:disabled {
+  background-color: var(--distinguish-bg-disabled-color);
+  color: var(--distinguish-disabled-color);
+}

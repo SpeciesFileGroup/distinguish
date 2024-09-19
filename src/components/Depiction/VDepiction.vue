@@ -1,7 +1,7 @@
 <template>
   <div
     v-if="depiction"
-    class="depiction-box"
+    class="distinguish-depiction-box"
   >
     <img :src="depiction.imageUrl">
   </div>
@@ -20,14 +20,3 @@ Depiction.find(props.depictionId).then(({ data }) => {
   depiction.value = makeDepiction(data)
 })
 </script>
-
-<style lang="scss">
-.depiction-box {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid black;
-  height: 300px;
-  width: 300px;
-}
-</style>

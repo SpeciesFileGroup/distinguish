@@ -1,0 +1,30 @@
+.distinguish-grid {
+  width: 100%;
+  grid-template-rows: 1fr;
+  height: 100%;
+  overflow: hidden;
+}
+
+.distinguish-layout-mode-1 {
+  .distinguish-panel-descriptors {
+    grid-area: 1 / 1 / 2 / 3;
+  }
+  .distinguish-panel-remaining {
+    grid-area: 2 / 1 / 3 / 2;
+  }
+  .distinguish-panel-eliminated {
+    grid-area: 2 / 2 / 3 / 3;
+  }
+}
+
+.distinguish-layout-mode-2 {
+  .distinguish-panel-descriptors {
+    grid-area: 1 / 1 / 3 / 2;
+  }
+  .distinguish-panel-remaining {
+    grid-area: 1 / 2 / 2 / 3;
+  }
+  .distinguish-panel-eliminated {
+    grid-area: 2 / 2 / 3 / 3;
+  }
+}

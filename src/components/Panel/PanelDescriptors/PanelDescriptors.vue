@@ -1,5 +1,5 @@
 <template>
-  <div class="descriptors-view">
+  <VPanel class="distinguish-panel-descriptors">
     <DescriptorsList
       v-if="useStore.getDescriptorsUsed.length"
       :descriptors="useStore.getDescriptorsUsed"
@@ -15,12 +15,13 @@
       :descriptors="useStore.getDescriptorsUseless"
       title="Descriptors no longer relevant for identification"
     />
-  </div>
+  </VPanel>
 </template>
 
 <script setup lang="ts">
 import { useObservationMatrixStore } from '@/store/observationMatrices'
 import DescriptorsList from './DescriptorsList.vue'
+import VPanel from '@/components/UI/VPanel.vue'
 
 const useStore = useObservationMatrixStore()
 </script>

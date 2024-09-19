@@ -1,64 +1,136 @@
 @import './vars.scss';
 @import './utils.scss';
+@import './buttons.scss';
+@import './panel.scss';
+@import './spinner.scss';
+@import './modal.scss';
+@import './grid.scss';
 
-html, body {
-  margin: 0px;
+.distinguish-app-container {
+  display: flex;
+  flex-direction: column;
   height: 100%;
-}
-
-body {
-  background-color: var(--bg-color);
-}
-
-.vue-interactive-keys {
-  height: 100vh;
-  max-height: 100vh;
+  max-height: 100%;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 13px;
 
-  .grid {
-    max-height: calc(100% - 140px);
-  }
-
-  .grid-panel {
-    background-color: white;
-    padding: 1rem;
-    overflow-y: scroll;
-  }
-  
-  .layout-mode-1 {
-    .panel-descriptors { 
-      grid-area: 1 / 1 / 2 / 3; 
-    }
-    .panel-remaining { 
-      grid-area: 2 / 1 / 3 / 2; 
-    }
-    .panel-eliminated { 
-      grid-area: 2 / 2 / 3 / 3;
-    }
-  }
-  
-  .layout-mode-2 {
-    .panel-descriptors  { 
-      grid-area: 1 / 1 / 3 / 2; 
-    }
-    .panel-remaining { 
-      grid-area: 1 / 2 / 2 / 3; 
-    }
-    .panel-eliminated { 
-      grid-area: 2 / 2 / 3 / 3; 
-    }
-  }
-
-  input, select {
+  input,
+  select {
     padding: 0.5em 1em;
     border: 1px solid;
     border-radius: 2px;
-    border-color: var(--border-color);
-    background-color: white;
+    border-color: var(--distinguish-border-color);
   }
 
-  .error-message {
-    color: var(--error-color);
+  .distinguish-header-error-message {
+    color: var(--distinguish-error-color);
   }
+}
+
+.distinguish-depiction-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid black;
+  height: 300px;
+  width: 300px;
+}
+
+.distinguish-row-item {
+}
+.distinguish-row-item-error {
+  cursor: pointer;
+}
+
+.distinguish-character-descriptor__cell {
+  display: flex;
+  align-items: flex-end;
+}
+
+.distinguish-character-states-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(33.33%, 1fr));
+  gap: 1em;
+}
+
+.distinguish-descriptor-container {
+}
+.distinguish-descriptor-continuous {
+}
+.distinguish-descriptor-presence-absence {
+}
+.distinguish-descriptor-qualitative {
+}
+.distinguish-descriptor-sample {
+}
+
+.distinguish-list-checkboxes {
+  list-style: none;
+  padding: 0;
+}
+
+.distinguish-input-label {
+  display: block;
+}
+
+.distinguish-header-bar {
+  background-color: var(--distinguish-bg-panel-color);
+  padding: 1em;
+  box-shadow: rgb(36 37 38 / 8%) 4px 4px 15px 0px;
+  border-bottom: 1px solid var(--distinguish-border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &__buttons {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.distinguish-title-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.distinguish-header-bar__buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.distinguish-descriptor-modal {
+  width: 1000px;
+  max-height: 90vh;
+  overflow-y: scroll;
+
+  &__depiction {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.distinguish-grid-icon {
+  width: 20px;
+  height: 12px;
+  border: 2px solid transparent;
+  background-color: transparent;
+  grid-gap: 2px;
+
+  > div {
+    background-color: white;
+  }
+}
+
+.distinguish-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  grid-gap: 1px;
+  background-color: var(--distinguish-border-color);
+  box-shadow: 0px 1px 1px 0px rgb(0 0 0 / 20%);
 }

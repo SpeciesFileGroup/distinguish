@@ -1,5 +1,5 @@
 <template>
-  <div class="d-flex justify-between">
+  <div class="distinguish-title-section">
     <TitleMatrix />
     <TitleMatrixCitation />
   </div>

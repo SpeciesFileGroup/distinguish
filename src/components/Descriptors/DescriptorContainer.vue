@@ -1,8 +1,11 @@
 <template>
-  <div :id="`descriptor-${descriptor.descriptorId}`">
-    <div class="d-block">
+  <div
+    :id="`descriptor-${descriptor.descriptorId}`"
+    class="distinguish-descriptor-container"
+  >
+    <div class="distinguish-input-label">
       <span
-        class="link"
+        class="distinguish-link"
         @click="isModalVisible = true"
       >
         <slot name="title">
@@ -11,13 +14,12 @@
       </span>
     </div>
     <slot />
+    <DescriptorModal
+      v-if="isModalVisible"
+      :descriptor="descriptor"
+      @close="isModalVisible = false"
+    />
   </div>
-
-  <DescriptorModal
-    v-if="isModalVisible"
-    :descriptor="descriptor"
-    @close="isModalVisible = false"
-  />
 </template>
 
 <script setup lang="ts">
@@ -30,5 +32,4 @@ defineProps<{
 }>()
 
 const isModalVisible = ref<boolean>(false)
-
 </script>

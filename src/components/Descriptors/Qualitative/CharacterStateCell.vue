@@ -1,5 +1,5 @@
 <template>
-  <div class="character-descriptor__cell">
+  <div class="distinguish-character-descriptor__cell">
     <label>
       <VDepiction
         v-for="depictionId in characterState.depictionIds"
@@ -45,10 +45,3 @@ const updateCharacterStateFilter: WritableComputedRef<number[]> = computed({
   }
 })
 </script>
-
-<style lang="scss">
-  .character-descriptor__cell {
-    display: flex;
-    align-items: flex-end;
-  }
-</style>

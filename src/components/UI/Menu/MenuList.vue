@@ -1,12 +1,11 @@
 <template>
-  <ul class="menu-list">
-    <slot/>
+  <ul class="distinguish-menu-list">
+    <slot />
   </ul>
 </template>
 
-
 <style lang="scss">
-.menu-list {
+.distinguish-menu-list {
   display: flex;
   list-style: none;
   align-items: center;

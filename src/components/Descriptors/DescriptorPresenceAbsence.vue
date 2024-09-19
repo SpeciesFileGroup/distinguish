@@ -1,8 +1,11 @@
 <template>
-  <descriptor-container :descriptor="descriptor">
+  <DescriptorContainer
+    class="distinguish-descriptor-presence-absence"
+    :descriptor="descriptor"
+  >
     <select v-model="descriptorValue">
       <option />
-      <option 
+      <option
         v-for="(value, option) in OPTIONS"
         :key="option"
         :value="value"
@@ -11,7 +14,7 @@
         {{ option }} ({{ getNumberOfObjects(value) }})
       </option>
     </select>
-  </descriptor-container>
+  </DescriptorContainer>
 </template>
 
 <script setup lang="ts">
@@ -34,7 +37,9 @@ const useStore = useFilterStore()
 
 const descriptorValue: WritableComputedRef<boolean | undefined> = computed({
   get: (): boolean => {
-    return useStore.getDescriptorValueById(props.descriptor.descriptorId) as boolean
+    return useStore.getDescriptorValueById(
+      props.descriptor.descriptorId
+    ) as boolean
   },
 
   set: (value: boolean) => {
@@ -53,8 +58,10 @@ const descriptorValue: WritableComputedRef<boolean | undefined> = computed({
 
 const getNumberOfObjects = (value: boolean): number => {
   const { states } = props.descriptor
-  
-  return states.find((s: IDescriptorState) => s.name === String(value))?.numberOfObjects || 0
-}
 
+  return (
+    states.find((s: IDescriptorState) => s.name === String(value))
+      ?.numberOfObjects || 0
+  )
+}
 </script>

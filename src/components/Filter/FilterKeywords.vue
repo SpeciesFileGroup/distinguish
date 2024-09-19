@@ -3,10 +3,7 @@
     color="primary"
     size="medium"
     :disabled="!store.getKeywords.length"
-    :title="!store.getKeywords.length
-      ? 'No tags defined.'
-      : ''
-    "
+    :title="!store.getKeywords.length ? 'No tags defined.' : ''"
     @click="isModalVisible = true"
   >
     Keyword
@@ -19,9 +16,9 @@
       <h3>Keywords</h3>
     </template>
     <template #body>
-      <ul class="list-none p-0">
+      <ul class="distinguish-list-checkboxes">
         <li
-          v-for="({ keywordId, name }) in store.getKeywords"
+          v-for="{ keywordId, name } in store.getKeywords"
           :key="keywordId"
         >
           <label>
@@ -29,7 +26,7 @@
               v-model="keywordIds"
               :value="keywordId"
               type="checkbox"
-            >
+            />
             {{ name }}
           </label>
         </li>
@@ -56,5 +53,4 @@ const keywordIds: WritableComputedRef<number[]> = computed({
     filterStore.$patch({ keywordIds: value })
   }
 })
-
 </script>

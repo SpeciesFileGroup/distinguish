@@ -1,15 +1,19 @@
 <template>
-  <descriptor-container :descriptor="descriptor">
+  <DescriptorContainer
+    class="distinguish-descriptor-sample"
+    :descriptor="descriptor"
+  >
     <template #title>
-      {{ descriptor.name }} ({{ descriptor.min }}-{{ descriptor.max }} {{ descriptor.defaultUnit }})
+      {{ descriptor.name }} ({{ descriptor.min }}-{{ descriptor.max }}
+      {{ descriptor.defaultUnit }})
     </template>
     <input
       v-model="fieldValue"
       type="text"
       @blur="setDescriptorValue"
       @keyup.enter="setDescriptorValue"
-    >
-  </descriptor-container>
+    />
+  </DescriptorContainer>
 </template>
 
 <script setup lang="ts">
@@ -23,7 +27,9 @@ const props = defineProps<{
 }>()
 
 const useStore = useFilterStore()
-const fieldValue = ref<string>(String(useStore.getDescriptorValueById(props.descriptor.descriptorId)))
+const fieldValue = ref<string>(
+  String(useStore.getDescriptorValueById(props.descriptor.descriptorId))
+)
 
 const setDescriptorValue = () => {
   const { descriptorId } = props.descriptor
@@ -38,5 +44,4 @@ const setDescriptorValue = () => {
     useStore.removeDescriptor(descriptorId)
   }
 }
-
 </script>

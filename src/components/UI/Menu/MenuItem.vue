@@ -1,11 +1,11 @@
 <template>
-  <li class="list-item">
+  <li class="distinguish-list-item">
     <slot />
   </li>
 </template>
 
-<style scoped lang="scss">
-.list-item {
+<style lang="scss">
+.distinguish-list-item {
   justify-content: center;
   padding-left: 1em;
   padding-right: 1em;

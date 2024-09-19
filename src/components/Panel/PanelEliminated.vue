@@ -1,23 +1,28 @@
 <template>
-  <div>
+  <VPanel class="distinguish-panel-eliminated">
     <h2>Eliminated ({{ eliminated.length }})</h2>
     <ul>
-      <PanelRowItem
+      <li
         v-for="item in eliminated"
         :key="item.rowId"
-        :row="item"
-        class="margin-small-bottom"
+        class="distinguish-row-item"
+        v-html="render ? render(item) : item.objectTag"
       />
     </ul>
-  </div>
+  </VPanel>
 </template>
 
 <script setup lang="ts">
-
 import { computed } from 'vue'
 import { useObservationMatrixStore } from '@/store/observationMatrices'
 import { IRow } from '@/interfaces'
-import PanelRowItem from './PanelRowItem.vue'
+import VPanel from '../UI/VPanel.vue'
+
+interface Props {
+  render?: Function
+}
+
+defineProps<Props>()
 
 const store = useObservationMatrixStore()
 const eliminated = computed<Array<IRow>>(() => store.getEliminated)

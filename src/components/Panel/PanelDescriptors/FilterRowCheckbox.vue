@@ -2,12 +2,13 @@
   <label>
     <input
       v-model="rowFilter"
-      type="checkbox">
+      type="checkbox"
+    >
     Filter
   </label>
 </template>
 <script setup lang="ts">
-import { computed } from '@vue/reactivity';
+import { computed } from 'vue';
 import { useSettingsStore } from '../../../store/settings';
 
 const useStore = useSettingsStore()

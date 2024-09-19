@@ -1,5 +1,5 @@
 <template>
-  <VModal container-class="descriptor-modal">
+  <VModal container-class="distinguish-descriptor-modal">
     <template #header>
       <h3>{{ descriptor.name }}</h3>
       <span v-if="descriptor.description">
@@ -39,16 +39,3 @@ defineProps<{
 }>()
 
 </script>
-
-<style lang="scss">
-  .descriptor-modal {
-    width: 1000px;
-    max-height: 90vh;
-    overflow-y: scroll;
-
-    &__depiction {
-      display: flex;
-      justify-content: center;
-    }
-  }
-</style>

@@ -1,5 +1,8 @@
 <template>
-  <descriptor-container :descriptor="descriptor">
+  <DescriptorContainer
+    class="distinguish-descriptor-qualitative"
+    :descriptor="descriptor"
+  >
     <select
       name="listbox"
       @change="setDescriptorValue"
@@ -16,7 +19,7 @@
         {{ characterState.name }} ({{ characterState.numberOfObjects }})
       </option>
     </select>
-  </descriptor-container>
+  </DescriptorContainer>
 </template>
 
 <script setup lang="ts">
@@ -33,7 +36,7 @@ const setDescriptorValue = (e: Event): void => {
   const { descriptorId } = props.descriptor
 
   if (target.value) {
-    useStore.setDescriptor({ 
+    useStore.setDescriptor({
       descriptorId,
       value: [Number(target.value)]
     })
@@ -43,9 +46,10 @@ const setDescriptorValue = (e: Event): void => {
 }
 
 const selectedOption = (characterState: ICharacterState): boolean => {
-  const storedValue = useStore.getDescriptorValueById(props.descriptor.descriptorId) as Array<number>
+  const storedValue = useStore.getDescriptorValueById(
+    props.descriptor.descriptorId
+  ) as Array<number>
 
   return storedValue.includes(characterState.characterStateId)
 }
-
 </script>

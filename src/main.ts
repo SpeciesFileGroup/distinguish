@@ -2,13 +2,14 @@ import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import App from './App.vue'
 import '@/assets/stylesheets/main.scss'
+import '@/assets/stylesheets/demo.scss'
 
-const app = createApp(App, { 
-  observationMatrixId: 24,
+const app = createApp(App, {
+  observationMatrixId: 227,
   apiConfig: {
     baseURL: 'http://localhost:3000/api/v1/',
     projectId: undefined,
-    projectToken: '5kshojqRCr83fM3MW7OA9g',
+    projectToken: 'ZEJhFp9sq8kBfks15qAbAg',
     userToken: undefined
   }
 })

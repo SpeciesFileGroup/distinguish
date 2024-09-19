@@ -1,25 +1,28 @@
 import { beforeAll, afterEach, afterAll } from 'vitest'
-import { rest } from 'msw'
+import { http, HttpResponse } from 'msw'
 import { setupServer } from 'msw/node'
 import {
-  interactiveKeyResponse, 
+  interactiveKeyResponse,
   observationMatricesAutocompleteResponse
 } from './mock/responses'
 
 export const restHandlers = [
-  rest.get('*/observation_matrices/:observationMatrixId/key', (req, res, ctx) => {
-    return res(ctx.status(200), ctx.json(interactiveKeyResponse))
+  http.get('*/observation_matrices/:observationMatrixId/key', () => {
+    return HttpResponse.json(interactiveKeyResponse)
   }),
 
-  rest.get('*/observation_matrices/autocomplete', (req, res, ctx) => {
-    const queryString = req.url.searchParams.get('term')
+  http.get(
+    '*/observation_matrices/autocomplete',
+    ({ request }: { request: any }) => {
+      const queryString = new URL(request.url).searchParams.get('term')
 
-    return res(ctx.status(200), ctx.json(
-      queryString === 'Interactive'
-        ? observationMatricesAutocompleteResponse
-        : []
-      ))
-  })
+      return HttpResponse.json(
+        queryString === 'Interactive'
+          ? observationMatricesAutocompleteResponse
+          : []
+      )
+    }
+  )
 ]
 
 const server = setupServer(...restHandlers)

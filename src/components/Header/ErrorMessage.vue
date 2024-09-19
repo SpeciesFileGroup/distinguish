@@ -1,5 +1,5 @@
 <template>
-  <span class="error-message">
+  <span class="distinguish-header-error-message">
     {{ store.getErrorMessage }}
   </span>
 </template>

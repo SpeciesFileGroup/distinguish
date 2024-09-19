@@ -1,26 +1,31 @@
-import { IAPIConfiguration } from '@/interfaces/IAPIConfiguration';
+import { IAPIConfiguration } from '@/interfaces/IAPIConfiguration'
 import { createApp, App } from 'vue'
 import { createPinia } from 'pinia'
-import VueInteractiveKey from "../App.vue"
+import VueInteractiveKey from '../App.vue'
 import '@/assets/stylesheets/main.scss'
 
-function discoverInteractiveKey (selector?: string): Array<App> {
+function discoverInteractiveKey(selector?: string): Array<App> {
   const tag: string = selector || '[data-interactive-key="true"]'
   const elements: NodeListOf<HTMLElement> = document.querySelectorAll(tag)
   const elementsList: Array<HTMLElement> = [...elements]
 
-  return elementsList.map(element => 
+  return elementsList.map((element) =>
     createInteractiveKey(element, parseElementOptions(element))
   )
 }
 
-function autoDiscover (): void {
+function autoDiscover(): void {
   discoverInteractiveKey()
 }
 
-function parseElementOptions (element: HTMLElement): { observationMatrixId: number, apiConfig: IAPIConfiguration } {
+function parseElementOptions(element: HTMLElement): {
+  observationMatrixId: number
+  apiConfig: IAPIConfiguration
+} {
   return {
-    observationMatrixId: Number(element.getAttribute('data-observation-matrix-id')),
+    observationMatrixId: Number(
+      element.getAttribute('data-observation-matrix-id')
+    ),
     apiConfig: {
       baseURL: element.getAttribute('data-base-url') || '',
       projectToken: element.getAttribute('data-project-token') || undefined,
@@ -31,11 +36,11 @@ function parseElementOptions (element: HTMLElement): { observationMatrixId: numb
   }
 }
 
-function createInteractiveKey (element: HTMLElement | string, opt: { apiConfig: IAPIConfiguration, observationMatrixId: number }): App {
-  const {
-    apiConfig,
-    observationMatrixId
-  } = opt
+function createInteractiveKey(
+  element: HTMLElement | string,
+  opt: { apiConfig: IAPIConfiguration; observationMatrixId: number }
+): App {
+  const { apiConfig, observationMatrixId } = opt
 
   if (!observationMatrixId) {
     throw 'Missing observation matrix ID'
@@ -43,14 +48,14 @@ function createInteractiveKey (element: HTMLElement | string, opt: { apiConfig: 
 
   if (
     !apiConfig ||
-    !apiConfig.projectToken &&
-    !apiConfig.csrfToken &&
-    !(apiConfig.projectId && apiConfig.userToken)
+    (!apiConfig.projectToken &&
+      !apiConfig.csrfToken &&
+      !(apiConfig.projectId && apiConfig.userToken))
   ) {
     throw 'Missing API configuration'
   }
 
-  const app = createApp(VueInteractiveKey, { 
+  const app = createApp(VueInteractiveKey, {
     observationMatrixId,
     apiConfig
   })
@@ -63,7 +68,4 @@ function createInteractiveKey (element: HTMLElement | string, opt: { apiConfig: 
 
 window.addEventListener('DOMContentLoaded', autoDiscover)
 
-export { 
-  createInteractiveKey,
-  discoverInteractiveKey
-}
+export { createInteractiveKey, discoverInteractiveKey, VueInteractiveKey }

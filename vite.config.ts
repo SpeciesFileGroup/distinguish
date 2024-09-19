@@ -1,14 +1,22 @@
 import { fileURLToPath, URL } from 'url'
 import { defineConfig } from 'vitest/config'
 import vue from '@vitejs/plugin-vue'
-import path from "path"
+import path from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL("./src", import.meta.url))
-    },
+      '@': fileURLToPath(new URL('./src', import.meta.url))
+    }
+  },
+
+  css: {
+    preprocessorOptions: {
+      scss: {
+        api: 'modern-compiler'
+      }
+    }
   },
 
   plugins: [vue()],
@@ -19,17 +27,20 @@ export default defineConfig({
     setupFiles: 'src/setupTests.ts'
   },
 
-  build:{
+  build: {
     lib: {
       entry: path.resolve(__dirname, 'src/lib/main.ts'),
       name: 'Distinguish',
-      fileName: format => `distinguish.${format}.js`
+      fileName: (format) => `distinguish.${format}.js`
     },
     rollupOptions: {
-      external: [],
+      external: ['pinia', 'vue'],
       output: {
-        dir: "dist",
-        globals: {}
+        dir: 'dist',
+        globals: {
+          vue: 'Vue',
+          pinia: 'Pinia'
+        }
       }
     }
   }

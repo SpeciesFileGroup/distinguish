@@ -1,4 +1,7 @@
-<template v-if="descriptors.length">
+<template 
+  v-if="descriptors.length" 
+  class="distinguish-panel-descriptors-list"
+>
   <h2>{{ title }}</h2>
   <ol>
     <li

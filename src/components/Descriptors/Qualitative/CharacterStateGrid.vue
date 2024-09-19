@@ -1,5 +1,5 @@
 <template>
-  <div class="character-states-grid">
+  <div class="distinguish-character-states-grid">
     <CharacterStateCell
       v-for="characterState in descriptor.characterStates"
       :key="characterState.characterStateId"
@@ -45,11 +45,3 @@ onUnmounted(() => {
 })
 
 </script>
-
-<style lang="scss">
-.character-states-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(33.33%, 1fr));
-  gap: 1em;
-}
-</style>

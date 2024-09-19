@@ -1,5 +1,8 @@
 <template>
-  <span :title="citationLabel">
+  <span 
+    class="distinguish-title-citation"
+    :title="citationLabel"
+  >
     {{ citationLabel }}
   </span>
 </template>

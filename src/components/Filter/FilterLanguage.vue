@@ -2,7 +2,7 @@
   <div>
     <label
       for="languages"
-      class="d-block"
+      class="distinguish-input-label"
     >
       Languages
     </label>
@@ -12,8 +12,8 @@
       name="languages"
       role="listbox"
     >
-      <option 
-        v-for="({ languageId, name }) in store.getLanguages"
+      <option
+        v-for="{ languageId, name } in store.getLanguages"
         :key="languageId"
         :value="languageId"
       >
@@ -34,9 +34,8 @@ const store = useObservationMatrixStore()
 const language: WritableComputedRef<number | undefined> = computed({
   get: () => filterStore.getLanguageId,
 
-  set: languageId => {
+  set: (languageId) => {
     filterStore.setLanguageId(Number(languageId))
   }
 })
-
 </script>

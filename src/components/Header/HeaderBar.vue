@@ -1,5 +1,5 @@
 <template>
-  <div class="header-bar">
+  <div class="distinguish-header-bar">
     <ErrorMessage />
 
     <MenuList>
@@ -26,8 +26,8 @@
       </MenuListItem>
     </MenuList>
 
-    <div class="header-bar__buttons">
-      <ResetButton class="margin-small-right" />
+    <div class="distinguish-header-bar__buttons">
+      <ResetButton />
       <GridToggle />
     </div>
   </div>
@@ -46,23 +46,4 @@ import MenuListItem from '../UI/Menu/MenuItem.vue'
 import GridToggle from './GridToggle.vue'
 import ResetButton from './ResetButton.vue'
 import ErrorMessage from './ErrorMessage.vue'
-
 </script>
-
-<style scoped lang="scss">
-.header-bar {
-  background-color: var(--bg-panel-color);
-  padding: 1em;
-  box-shadow: rgb(36 37 38 / 8%) 4px 4px 15px 0px;
-  border-bottom: 1px solid var(--border-color);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  &__buttons {
-    display: flex;
-    align-items: center;
-  }
-}
-
-</style>

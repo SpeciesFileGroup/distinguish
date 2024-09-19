@@ -1,6 +1,7 @@
 <template>
-  <h1>
-    Interactive key <span v-if="store.getObservationMatrix">| {{ store.getObservationMatrix.name }}</span>
+  <h1 class="distinguish-title">
+    Interactive key
+    <span v-if="store.getObservationMatrix">| {{ store.getObservationMatrix.name }}</span>
   </h1>
 </template>
 

@@ -1,40 +1,4 @@
-.d-block {
-  display: block;
-}
-
-.d-flex {
-  display: flex;
-}
-
-.justify-between {
-  justify-content: space-between;
-}
-
-.align-center {
-  align-items: center;
-}
-
-.w-100 {
-  height: 100%;
-}
-
-.margin-medium-bottom {
-  margin-bottom: 1em;
-}
-
-.margin-small-right {
-  margin-right: 0.5em;
-}
-
-.p-0 {
-  padding: 0;
-}
-
-.link {
-  color: var(--link-color);
+.distinguish-link {
+  color: var(--distinguish-link-color);
   cursor: pointer;
-}
-
-.list-none {
-  list-style: none;
 }

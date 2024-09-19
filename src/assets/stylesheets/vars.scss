@@ -1,14 +1,16 @@
 :root {
   // Colors
-  --bg-color: #f7f8fc;
-  --bg-panel-color: #FFFFFF;
-  --bg-disabled-color: #e5e5e5;
-  --disabled-color: #999;
-  --error-color: #FF0000;
-  --primary-color: #5D9ECE;
-  --border-color: #CCCCCC;
-  --link-color: #5D9ECE;
+  --distinguish-primary-content-color: #ffffff;
+  --distinguish-bg-color: #f7f8fc;
+  --distinguish-bg-panel-color: #ffffff;
+  --distinguish-bg-modal-color: #ffffff;
+  --distinguish-bg-disabled-color: #e5e5e5;
+  --distinguish-disabled-color: #999;
+  --distinguish-error-color: #ff0000;
+  --distinguish-primary-color: #5d9ece;
+  --distinguish-border-color: #cccccc;
+  --distinguish-link-color: #5d9ece;
 
   // Sizes
-  --btn-medium-size: 28px;
+  --distinguish-btn-medium-size: 28px;
 }

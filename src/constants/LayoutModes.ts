@@ -3,6 +3,6 @@ type Layout = {
 }
 
 export const LAYOUT_MODES: Layout = {
-  'layout-mode-1': 'layout-mode-2',
-  'layout-mode-2': 'layout-mode-1'
+  'distinguish-layout-mode-1': 'distinguish-layout-mode-2',
+  'distinguish-layout-mode-2': 'distinguish-layout-mode-1'
 }

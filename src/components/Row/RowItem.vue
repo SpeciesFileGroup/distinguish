@@ -3,7 +3,7 @@
     <span>
       <span
         v-if="row.errors"
-        class="cursor-pointer"
+        class="distinguish-row-item-error"
       >
         ({{ row.errors }})
       </span>
