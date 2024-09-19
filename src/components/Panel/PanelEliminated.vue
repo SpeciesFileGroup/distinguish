@@ -6,8 +6,11 @@
         v-for="item in eliminated"
         :key="item.rowId"
         class="distinguish-row-item"
-        v-html="render ? render(item) : item.objectTag"
-      />
+      >
+        <slot :item="item">
+          <span v-html="render ? render(item) : item.objectTag" />
+        </slot>
+      </li>
     </ul>
   </VPanel>
 </template>

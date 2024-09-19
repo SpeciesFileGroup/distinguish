@@ -6,8 +6,22 @@
 
     <VGrid :class="gridLayout">
       <PanelDescriptors />
-      <PanelRemaining :render="props.renderItem" />
-      <PanelEliminated :render="props.renderItem" />
+      <PanelRemaining :render="props.renderItem">
+        <template #default="slotProps">
+          <slot
+            name="remaining-item"
+            v-bind="slotProps"
+          />
+        </template>
+      </PanelRemaining>
+      <PanelEliminated :render="props.renderItem">
+        <template #default="slotProps">
+          <slot
+            name="eliminated-item"
+            v-bind="slotProps"
+          />
+        </template>
+      </PanelEliminated>
     </VGrid>
 
     <VSpinner
