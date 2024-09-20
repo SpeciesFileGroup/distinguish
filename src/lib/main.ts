@@ -66,6 +66,8 @@ function createInteractiveKey(
   return app
 }
 
-window?.addEventListener('DOMContentLoaded', autoDiscover)
+if (typeof window !== 'undefined') {
+  window.addEventListener('DOMContentLoaded', autoDiscover)
+}
 
 export { createInteractiveKey, discoverInteractiveKey, VueInteractiveKey }
