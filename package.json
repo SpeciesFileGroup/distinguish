@@ -2,12 +2,18 @@
   "name": "@sfgrp/distinguish",
   "private": false,
   "type": "module",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "files": [
     "dist"
   ],
-  "main": "./dist/distinguish.umd.js",
+  "main": "./dist/distinguish.umd.cjs",
   "module": "./dist/distinguish.es.js",
+  "exports": {
+    ".": {
+      "import": "./dist/distinguish.es.js",
+      "require": "./dist/distinguish.umd.cjs"
+    }
+  },
   "publishConfig": {
     "access": "public"
   },
