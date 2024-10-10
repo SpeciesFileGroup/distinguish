@@ -8,7 +8,6 @@ interface ISettings {
   isLoading: boolean
   isRefreshing: boolean
   refreshOnlyTaxa: boolean
-  rowFilter: boolean
   shouldUpdate: boolean
   observationMatrixId?: number
   errorMessage: string
@@ -21,7 +20,6 @@ export const useSettingsStore = defineStore('settings', {
     isLoading: false,
     isRefreshing: false,
     refreshOnlyTaxa: false,
-    rowFilter: true,
     shouldUpdate: true,
     observationMatrixId: undefined,
     errorMessage: '',
@@ -41,8 +39,6 @@ export const useSettingsStore = defineStore('settings', {
     getLayout: (state): string => state.gridLayout,
 
     getRefreshOnlyTaxa: (state): boolean => state.refreshOnlyTaxa,
-
-    getRowFilter: (state): boolean => state.rowFilter,
 
     getShouldUpdate: (state): boolean => state.shouldUpdate,
 

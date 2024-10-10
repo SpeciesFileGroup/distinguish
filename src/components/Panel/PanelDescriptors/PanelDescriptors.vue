@@ -1,18 +1,19 @@
 <template>
   <VPanel class="distinguish-panel-descriptors">
+    <FilterRowCheckbox />
     <DescriptorsList
-      v-if="useStore.getDescriptorsUsed.length"
-      :descriptors="useStore.getDescriptorsUsed"
+      v-if="store.getDescriptorsUsed.length"
+      :descriptors="store.getDescriptorsUsed"
       title="Used Descriptors"
     />
     <DescriptorsList
-      v-if="useStore.getDescriptorsUseful.length"
-      :descriptors="useStore.getDescriptorsUseful"
+      v-if="store.getDescriptorsUseful.length"
+      :descriptors="store.getDescriptorsUseful"
       title="Descriptors Useful for Identification"
     />
     <DescriptorsList
-      v-if="useStore.getDescriptorsUseless.length"
-      :descriptors="useStore.getDescriptorsUseless"
+      v-if="store.getDescriptorsUseless.length"
+      :descriptors="store.getDescriptorsUseless"
       title="Descriptors no longer relevant for identification"
     />
   </VPanel>
@@ -22,6 +23,7 @@
 import { useObservationMatrixStore } from '@/store/observationMatrices'
 import DescriptorsList from './DescriptorsList.vue'
 import VPanel from '@/components/UI/VPanel.vue'
+import FilterRowCheckbox from '@/components/Filter/FilterRowCheckbox.vue'
 
-const useStore = useObservationMatrixStore()
+const store = useObservationMatrixStore()
 </script>

@@ -15,6 +15,27 @@
     </template>
     <template #body>
       <div>
+        <div class="distinguish-row-filter-buttons">
+          <VBtn
+            v-if="
+              store.getRemaining.length !== rowIds.length || rowIds.length == 0
+            "
+            color="primary"
+            size="medium"
+            @click="() => (rowIds = store.getRemaining.map((r) => r.rowId))"
+          >
+            Select all
+          </VBtn>
+
+          <VBtn
+            v-else
+            color="primary"
+            size="medium"
+            @click="() => (rowIds = [])"
+          >
+            Unselect all
+          </VBtn>
+        </div>
         <ul class="distinguish-list-checkboxes">
           <li
             v-for="row in store.getRemaining"
@@ -71,9 +92,18 @@ watch(isModalVisible, (newValue) => {
   settingStore.setShouldUpdate(!newValue)
 
   if (!newValue && hasChanged.value) {
+    filterStore.rowFilter = true
     settingStore.checkUpdate()
   }
 
   previousRowIds.value = filterStore.getRowIds
 })
 </script>
+
+<style>
+.distinguish-row-filter-buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+}
+</style>

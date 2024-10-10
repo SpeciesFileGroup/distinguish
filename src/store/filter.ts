@@ -1,11 +1,12 @@
-import { defineStore } from "pinia"
-import { IKeyFilter } from "@/interfaces"
-import { DescriptorFilter } from "@/types"
+import { defineStore } from 'pinia'
+import { IKeyFilter } from '@/interfaces'
+import { DescriptorFilter } from '@/types'
 
 export const useFilterStore = defineStore('filter', {
   state: (): IKeyFilter => ({
     descriptors: {},
     eliminateUnknown: undefined,
+    rowFilter: true,
     errorTolerance: undefined,
     identifiedToRank: undefined,
     keywordIds: [],
@@ -15,37 +16,36 @@ export const useFilterStore = defineStore('filter', {
   }),
 
   getters: {
-    getKeywordIds: state => state.keywordIds,
+    getKeywordIds: (state) => state.keywordIds,
 
-    getLanguageId: state => state.languageId,
+    getLanguageId: (state) => state.languageId,
 
-    getRowIds: state => state.rowIds,
+    getRowIds: (state) => state.rowIds,
 
-    getDescriptors: state => state.descriptors,
+    getRowFilter: (state) => state.rowFilter,
 
-    getIdentifiedToRank: state => state.identifiedToRank,
+    getDescriptors: (state) => state.descriptors,
 
-    getEliminateUknown: state => state.eliminateUnknown,
+    getIdentifiedToRank: (state) => state.identifiedToRank,
 
-    getErrorTolerance: state => state.errorTolerance,
+    getEliminateUknown: (state) => state.eliminateUnknown,
 
-    getSorting: state => state.sorting,
+    getErrorTolerance: (state) => state.errorTolerance,
 
-    getDescriptorValueById: state => (id: number): DescriptorFilter => {
-      const value = state.descriptors[id]
+    getSorting: (state) => state.sorting,
 
-      return typeof value === 'boolean'
-        ? value
-        : value || ''
-    },
+    getDescriptorValueById:
+      (state) =>
+      (id: number): DescriptorFilter => {
+        const value = state.descriptors[id]
 
-    getFilterParams: state => {
-      const descriptorsParam = Object
-        .entries(state.descriptors)
-        .map(([key, value]) => 
-          Array.isArray(value)
-            ? `${key}:${value.join('|')}`
-            : `${key}:${value}`
+        return typeof value === 'boolean' ? value : value || ''
+      },
+
+    getFilterParams: (state) => {
+      const descriptorsParam = Object.entries(state.descriptors)
+        .map(([key, value]) =>
+          Array.isArray(value) ? `${key}:${value.join('|')}` : `${key}:${value}`
         )
         .join('||')
 
@@ -57,41 +57,49 @@ export const useFilterStore = defineStore('filter', {
         identified_to_rank: state.identifiedToRank,
         error_tolerance: state.errorTolerance,
         eliminate_unknown: state.eliminateUnknown,
-        row_filter: state.rowIds.join('|')
+        row_filter: state.rowFilter ? state.rowIds.join('|') : []
       }
     }
   },
 
   actions: {
-    setDescriptor ({ descriptorId, value }: { descriptorId: number, value: DescriptorFilter }) {
+    setDescriptor({
+      descriptorId,
+      value
+    }: {
+      descriptorId: number
+      value: DescriptorFilter
+    }) {
       this.descriptors[descriptorId] = value
     },
 
-    removeDescriptor (descriptorId: number) {
+    removeDescriptor(descriptorId: number) {
       delete this.descriptors[descriptorId]
     },
 
-    removeKeywordId (id: number) {
-      const index: number = this.keywordIds.findIndex(keywordId => keywordId === id)
+    removeKeywordId(id: number) {
+      const index: number = this.keywordIds.findIndex(
+        (keywordId) => keywordId === id
+      )
 
       if (index > -1) {
         this.keywordIds.splice(index, 1)
       }
     },
 
-    addKeywordId (id: number) {
+    addKeywordId(id: number) {
       this.keywordIds.push(id)
     },
 
-    setLanguageId (id: number) {
+    setLanguageId(id: number) {
       this.languageId = id
     },
 
-    setErrorTolerance (value: number | undefined) {
+    setErrorTolerance(value: number | undefined) {
       this.errorTolerance = value
     },
 
-    setEliminateUnknown (value: boolean) {
+    setEliminateUnknown(value: boolean) {
       this.eliminateUnknown = value
     }
   }
