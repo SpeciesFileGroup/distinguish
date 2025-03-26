@@ -1,10 +1,10 @@
-@import './vars.scss';
-@import './utils.scss';
-@import './buttons.scss';
-@import './panel.scss';
-@import './spinner.scss';
-@import './modal.scss';
-@import './grid.scss';
+@use './vars.scss';
+@use './utils.scss';
+@use './buttons.scss';
+@use './panel.scss';
+@use './spinner.scss';
+@use './modal.scss';
+@use './grid.scss';
 
 .distinguish-app-container {
   display: flex;
