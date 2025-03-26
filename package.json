@@ -2,7 +2,7 @@
   "name": "@sfgrp/distinguish",
   "private": false,
   "type": "module",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "files": [
     "dist"
   ],
@@ -13,7 +13,7 @@
       "import": "./dist/distinguish.es.js",
       "require": "./dist/distinguish.umd.cjs"
     },
-    "./dist/style.css": "./dist/style.css"
+    "./dist/distinguish.css": "./dist/distinguish.css"
   },
   "publishConfig": {
     "access": "public"
