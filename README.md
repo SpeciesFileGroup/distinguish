@@ -44,9 +44,9 @@ yarn add @sfgrp/distinguish vue pinia
 You can copy and paste the following tags into your HTML file.
 
 ```html
-<script src="https://unpkg.com/vue/dist/vue.global.prod.js"></script>
-<script src="https://unpkg.com/vue-demi"></script>
-<script src="https://unpkg.com/pinia"></script>
+<script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+<script src="https://unpkg.com/vue-demi/lib/index.iife.js"></script>
+<script src="https://unpkg.com/pinia/dist/pinia.iife.prod.js"></script>
 <link
   rel="stylesheet"
   href="https://cdn.jsdelivr.net/npm/@sfgrp/distinguish@latest/dist/style.min.css"
@@ -141,9 +141,9 @@ This uses the [CDN](#cdn) and [Declarative](#declarative) approach.
       data-project-token="yourprojecttoken"
       data-base-url="https://<your.taxonworks.server>/api/v1"
     ></div>
-    <script src="https://unpkg.com/vue/dist/vue.global.prod.js"></script>
-    <script src="https://unpkg.com/vue-demi"></script>
-    <script src="https://unpkg.com/pinia"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+    <script src="https://unpkg.com/vue-demi/lib/index.iife.js"></script>
+    <script src="https://unpkg.com/pinia/dist/pinia.iife.prod.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@sfgrp/distinguish@latest/dist/distinguish.umd.min.js"></script>
   </body>
 </html>
