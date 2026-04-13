@@ -6,7 +6,7 @@ import '@/assets/stylesheets/demo.scss'
 
 const app = createApp(App, {
   observationMatrixId: 227,
-  otuId: [],
+  //otuId: [],
   apiConfig: {
     baseURL: 'http://localhost:3000/api/v1/',
     projectId: undefined,

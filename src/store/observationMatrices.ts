@@ -1,13 +1,14 @@
 import { ObservationMatrix } from '@/services/ObservationMatrix'
-import { StatusType } from '@/constants/StatusType';
-import { defineStore } from "pinia"
+import { StatusType } from '@/constants/StatusType'
+import { defineStore } from 'pinia'
 import { Descriptor } from '../types'
 import {
   makeDescriptor,
   makeObservationMatrix,
   makeRow,
   makeKeyword,
-  makeLanguage
+  makeLanguage,
+  makeCitation
 } from '@/adapters'
 import {
   IObservationMatrix,
@@ -15,16 +16,16 @@ import {
   IRow,
   IKeyword,
   ILanguage
-} from "@/interfaces"
+} from '@/interfaces'
 
 interface IStore {
   descriptors: Array<Descriptor>
-  observationMatrix: IObservationMatrix | undefined,
+  observationMatrix: IObservationMatrix | undefined
   citation: ICitation | undefined
-  eliminated: Array<IRow>,
-  remaining: Array<IRow>,
-  availableKeywords: Array<IKeyword>,
-  availableLanguages: Array<ILanguage>,
+  eliminated: Array<IRow>
+  remaining: Array<IRow>
+  availableKeywords: Array<IKeyword>
+  availableLanguages: Array<ILanguage>
 }
 
 export const useObservationMatrixStore = defineStore('observationMatrix', {
@@ -45,13 +46,23 @@ export const useObservationMatrixStore = defineStore('observationMatrix', {
 
     getDescriptors: (state: IStore): Array<Descriptor> => state.descriptors,
 
-    getDescriptorById: (state: IStore) => (id: number): Descriptor | undefined => state.descriptors.find((d: Descriptor) => d.descriptorId === id),
+    getDescriptorById:
+      (state: IStore) =>
+      (id: number): Descriptor | undefined =>
+        state.descriptors.find((d: Descriptor) => d.descriptorId === id),
 
-    getDescriptorsUsed: (state: IStore): Array<Descriptor> => state.descriptors.filter((d: Descriptor) => d.status === StatusType.Used),
+    getDescriptorsUsed: (state: IStore): Array<Descriptor> =>
+      state.descriptors.filter((d: Descriptor) => d.status === StatusType.Used),
 
-    getDescriptorsUseless: (state: IStore): Array<Descriptor> => state.descriptors.filter((d: Descriptor) => d.status === StatusType.Useless),
+    getDescriptorsUseless: (state: IStore): Array<Descriptor> =>
+      state.descriptors.filter(
+        (d: Descriptor) => d.status === StatusType.Useless
+      ),
 
-    getDescriptorsUseful: (state: IStore): Array<Descriptor> => state.descriptors.filter((d: Descriptor) => d.status === StatusType.Useful),
+    getDescriptorsUseful: (state: IStore): Array<Descriptor> =>
+      state.descriptors.filter(
+        (d: Descriptor) => d.status === StatusType.Useful
+      ),
 
     getEliminated: (state: IStore): Array<IRow> => state.eliminated,
 
@@ -87,22 +98,40 @@ export const useObservationMatrixStore = defineStore('observationMatrix', {
       this.observationMatrix = observationMatrix
     },
 
-    async requestInteractiveKey(
-      { observationMatrixId, params = {}, opt = {} }: 
-      { 
-        observationMatrixId: number,
-        params?: object,
-        opt?: { refreshOnlyTaxa?: boolean } 
-      }
-    ) {
-      const request = await ObservationMatrix.key(observationMatrixId, { params })
+    setObservationMatrixCitation(citation: ICitation) {
+      this.citation = makeCitation(citation)
+    },
+
+    async requestInteractiveKey({
+      observationMatrixId,
+      params = {},
+      opt = {}
+    }: {
+      observationMatrixId: number
+      params?: object
+      opt?: { refreshOnlyTaxa?: boolean }
+    }) {
+      const request = await ObservationMatrix.key(observationMatrixId, {
+        params
+      })
       const { data } = request
 
       if (!opt.refreshOnlyTaxa) {
         this.setObservationMatrix(makeObservationMatrix(data))
-        this.setDescriptors(data.list_of_descriptors.map((d: object) => makeDescriptor(d)))
-        this.setKeywords(data.descriptor_available_keywords.map((r: object): IKeyword => makeKeyword(r)))
-        this.setLanguages(data.descriptor_available_languages.map((r: object): ILanguage => makeLanguage(r)))
+        this.setObservationMatrixCitation(data.observation_matrix_citation)
+        this.setDescriptors(
+          data.list_of_descriptors.map((d: object) => makeDescriptor(d))
+        )
+        this.setKeywords(
+          data.descriptor_available_keywords.map(
+            (r: object): IKeyword => makeKeyword(r)
+          )
+        )
+        this.setLanguages(
+          data.descriptor_available_languages.map(
+            (r: object): ILanguage => makeLanguage(r)
+          )
+        )
       }
 
       this.setEliminated(data.eliminated.map((r: object) => makeRow(r)))

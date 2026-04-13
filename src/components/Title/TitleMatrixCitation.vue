@@ -1,10 +1,10 @@
 <template>
-  <span 
+  -
+  <span
     class="distinguish-title-citation"
     :title="citationLabel"
-  >
-    {{ citationLabel }}
-  </span>
+    v-html="citationLabel"
+  />
 </template>
 
 <script setup lang="ts">
@@ -15,9 +15,6 @@ const store = useObservationMatrixStore()
 const citationLabel = computed(() => {
   const citation = store.getCitation
 
-  return Object.values(citation || {})
-    .filter(Boolean)
-    .join(', ')
+  return citation?.label
 })
-
 </script>

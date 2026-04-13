@@ -1,4 +1,5 @@
 export * from './makeCharacterState'
+export * from './makeCitation'
 export * from './makeDepiction'
 export * from './makeDescriptor'
 export * from './makeObservationMatrix'
