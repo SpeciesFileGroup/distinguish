@@ -35,6 +35,11 @@
           >
             Unselect all
           </VBtn>
+          <slot
+            name="select-renaming-options"
+            :selected-ids="rowIds"
+            :rows="store.getRemaining"
+          />
         </div>
         <ul class="distinguish-list-checkboxes">
           <li
