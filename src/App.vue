@@ -7,6 +7,12 @@
     <VGrid :class="gridLayout">
       <PanelDescriptors />
       <PanelRemaining :render="props.renderItem">
+        <template #remaining-row-filter="slotProps">
+          <slot
+            name="remaining-row-filter"
+            v-bind="slotProps"
+          />
+        </template>
         <template #default="slotProps">
           <slot
             name="remaining-item"

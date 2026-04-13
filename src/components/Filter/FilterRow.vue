@@ -36,7 +36,7 @@
             Unselect all
           </VBtn>
           <slot
-            name="select-renaming-options"
+            name="row-filter"
             :selected-ids="rowIds"
             :rows="store.getRemaining"
           />

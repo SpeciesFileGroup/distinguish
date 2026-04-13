@@ -2,7 +2,14 @@
   <VPanel class="distinguish-panel-remaining">
     <div class="distinguish-title-section">
       <h2>Remaining ({{ remaining.length }})</h2>
-      <FilterRow />
+      <FilterRow>
+        <template #row-filter="slotProps">
+          <slot
+            name="remaining-row-filter"
+            v-bind="slotProps"
+          />
+        </template>
+      </FilterRow>
     </div>
     <ul>
       <li

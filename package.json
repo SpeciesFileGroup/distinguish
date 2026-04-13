@@ -2,7 +2,7 @@
   "name": "@sfgrp/distinguish",
   "private": false,
   "type": "module",
-  "version": "0.4.4",
+  "version": "0.4.5",
   "files": [
     "dist"
   ],
