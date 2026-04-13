@@ -10,6 +10,7 @@ interface ISettings {
   refreshOnlyTaxa: boolean
   shouldUpdate: boolean
   observationMatrixId?: number
+  otuId?: number[]
   errorMessage: string
   apiConfig: IAPIConfiguration
 }
@@ -22,6 +23,7 @@ export const useSettingsStore = defineStore('settings', {
     refreshOnlyTaxa: false,
     shouldUpdate: true,
     observationMatrixId: undefined,
+    otuId: [],
     errorMessage: '',
     apiConfig: {
       baseURL: '',
@@ -45,6 +47,8 @@ export const useSettingsStore = defineStore('settings', {
     getObservationMatrixId: (state): number | undefined =>
       state.observationMatrixId,
 
+    getOtuId: (state): string => state.otuId?.join('|') || '',
+
     getAPIConfig: (state): IAPIConfiguration => state.apiConfig
   },
 
@@ -65,12 +69,16 @@ export const useSettingsStore = defineStore('settings', {
       this.apiConfig = config
     },
 
+    setOtuId(otuId: number | number[]) {
+      this.otuId = [otuId].flat()
+    },
+
     checkUpdate() {
       const filterStore = useFilterStore()
       const observationStore = useObservationMatrixStore()
       const observationMatrixId = this.observationMatrixId
 
-      if (this.shouldUpdate && observationMatrixId) {
+      if (this.shouldUpdate && typeof observationMatrixId === 'number') {
         this.isLoading = true
         observationStore
           .requestInteractiveKey({

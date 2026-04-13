@@ -19,7 +19,7 @@
     "access": "public"
   },
   "homepage": "https://github.com/SpeciesFileGroup/distinguish",
-  "license": "NCSA",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/SpeciesFileGroup/distinguish.git"

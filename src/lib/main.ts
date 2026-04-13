@@ -18,14 +18,27 @@ function autoDiscover(): void {
   discoverInteractiveKey()
 }
 
+function parseOtuId(otuId: string | null): number[] {
+  if (!otuId) {
+    return []
+  }
+
+  return otuId
+    .split(',')
+    .map((id) => Number(id.trim()))
+    .filter((id) => !isNaN(id))
+}
+
 function parseElementOptions(element: HTMLElement): {
   observationMatrixId: number
+  otuId: number[]
   apiConfig: IAPIConfiguration
 } {
   return {
     observationMatrixId: Number(
       element.getAttribute('data-observation-matrix-id')
     ),
+    otuId: parseOtuId(element.getAttribute('data-otu-id')),
     apiConfig: {
       baseURL: element.getAttribute('data-base-url') || '',
       projectToken: element.getAttribute('data-project-token') || undefined,

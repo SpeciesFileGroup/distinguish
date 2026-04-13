@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import { IKeyFilter } from '@/interfaces'
 import { DescriptorFilter } from '@/types'
+import { useSettingsStore } from './settings'
 
 export const useFilterStore = defineStore('filter', {
   state: (): IKeyFilter => ({
@@ -43,6 +44,7 @@ export const useFilterStore = defineStore('filter', {
       },
 
     getFilterParams: (state) => {
+      const settings = useSettingsStore()
       const descriptorsParam = Object.entries(state.descriptors)
         .map(([key, value]) =>
           Array.isArray(value) ? `${key}:${value.join('|')}` : `${key}:${value}`
@@ -57,7 +59,8 @@ export const useFilterStore = defineStore('filter', {
         identified_to_rank: state.identifiedToRank,
         error_tolerance: state.errorTolerance,
         eliminate_unknown: state.eliminateUnknown,
-        row_filter: state.rowFilter ? state.rowIds.join('|') : []
+        row_filter: state.rowFilter ? state.rowIds.join('|') : [],
+        otu_filter: settings.getOtuId
       }
     }
   },

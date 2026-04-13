@@ -48,6 +48,7 @@ interface Props {
   observationMatrixId: number
   apiConfig: IAPIConfiguration
   renderItem?: Function
+  otuId?: number[]
 }
 
 defineOptions({
@@ -62,7 +63,13 @@ const gridLayout = computed(() => settingStore.getLayout)
 
 const initialize = () => {
   settingStore.setAPIConfig(props.apiConfig)
+
   settingStore.setObservationMatrixId(props.observationMatrixId)
+
+  if (props.otuId) {
+    settingStore.setOtuId(props.otuId)
+  }
+
   settingStore.checkUpdate()
 }
 

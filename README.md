@@ -69,6 +69,7 @@ To pass the options you need to add the prefix `data-` and write the option in k
   data-observation-matrix-id="1"
   data-project-token="xQ9bKrhfQtHYfro9t6YY0A"
   data-base-url="https://sfg.taxonworks.org/api/v1"
+  data-otu-id="1,2,3,4" <!-- Optional -->
 ></div>
 ```
 
@@ -92,6 +93,7 @@ const app = createInteractiveKey('#interactive-key', options)
 ```javascript
 {
   observationMatrixId: '',      // Observation matrix ID
+  otuId: [],                    // Filter interactive key by OTU ID (optional)
   apiConfig: {
     baseURL: '',                // URL API, e.g https://sfg.taxonworks.org/api/v1
     csrfToken: '',              // CSRF Token. Don't use it with authentification API params.
