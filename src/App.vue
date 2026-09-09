@@ -38,9 +38,8 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
-import { useSettingsStore } from './store/settings'
-import { useFilterStore } from './store/filter'
+import { computed, watch } from 'vue'
+import { createStores, provideStores } from './store'
 import { IAPIConfiguration } from './interfaces'
 import HeaderBar from './components/Header/HeaderBar.vue'
 import PanelEliminated from './components/Panel/PanelEliminated.vue'
@@ -62,10 +61,12 @@ defineOptions({
 })
 
 const props = defineProps<Props>()
-const settingStore = useSettingsStore()
-const filterStore = useFilterStore()
+const stores = createStores()
+const { settings: settingStore, filter: filterStore } = stores
 const isLoading = computed(() => settingStore.getIsLoading)
 const gridLayout = computed(() => settingStore.getLayout)
+
+provideStores(stores)
 
 const initialize = () => {
   settingStore.setAPIConfig(props.apiConfig)
@@ -81,9 +82,13 @@ const initialize = () => {
 
 initialize()
 
-filterStore.$subscribe((_) => {
-  if (settingStore.shouldUpdate) {
-    settingStore.checkUpdate()
-  }
-})
+watch(
+  filterStore.state,
+  () => {
+    if (settingStore.getShouldUpdate) {
+      settingStore.checkUpdate()
+    }
+  },
+  { deep: true, flush: 'pre' }
+)
 </script>

@@ -12,11 +12,13 @@ import { ref } from 'vue'
 import { IDepiction } from '@/interfaces'
 import { Depiction } from '@/services'
 import { makeDepiction } from '@/adapters'
+import { useSettingsStore } from '@/store/settings'
 
 const props = defineProps<{ depictionId: number }>()
 const depiction = ref<IDepiction>()
+const settingStore = useSettingsStore()
 
-Depiction.find(props.depictionId).then(({ data }) => {
+Depiction.find(props.depictionId, settingStore.getAPIConfig).then(({ data }) => {
   depiction.value = makeDepiction(data)
 })
 </script>

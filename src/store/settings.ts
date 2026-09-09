@@ -1,7 +1,7 @@
-import { IAPIConfiguration } from '@/interfaces/IAPIConfiguration'
-import { useObservationMatrixStore } from './observationMatrices'
-import { useFilterStore } from '@/store/filter'
-import { defineStore } from 'pinia'
+import { reactive, computed } from 'vue'
+import { IAPIConfiguration } from '@/interfaces'
+import { useStores } from './container'
+import type { StoreContainer } from './container'
 
 interface ISettings {
   gridLayout: string
@@ -15,83 +15,125 @@ interface ISettings {
   apiConfig: IAPIConfiguration
 }
 
-export const useSettingsStore = defineStore('settings', {
-  state: (): ISettings => ({
-    gridLayout: 'distinguish-layout-mode-1',
-    isLoading: false,
-    isRefreshing: false,
-    refreshOnlyTaxa: false,
-    shouldUpdate: true,
-    observationMatrixId: undefined,
-    otuId: [],
-    errorMessage: '',
-    apiConfig: {
-      baseURL: '',
-      projectId: undefined,
-      projectToken: undefined,
-      userToken: undefined
-    }
-  }),
-
-  getters: {
-    getErrorMessage: (state): string => state.errorMessage,
-
-    getIsLoading: (state): boolean => state.isLoading,
-
-    getLayout: (state): string => state.gridLayout,
-
-    getRefreshOnlyTaxa: (state): boolean => state.refreshOnlyTaxa,
-
-    getShouldUpdate: (state): boolean => state.shouldUpdate,
-
-    getObservationMatrixId: (state): number | undefined =>
-      state.observationMatrixId,
-
-    getOtuId: (state): string => state.otuId?.join('|') || '',
-
-    getAPIConfig: (state): IAPIConfiguration => state.apiConfig
-  },
-
-  actions: {
-    setObservationMatrixId(value: number) {
-      this.observationMatrixId = value
-    },
-
-    setShouldUpdate(value: boolean) {
-      this.shouldUpdate = value
-    },
-
-    setRefreshOnlyTaxa(value: boolean) {
-      this.refreshOnlyTaxa = value
-    },
-
-    setAPIConfig(config: IAPIConfiguration) {
-      this.apiConfig = config
-    },
-
-    setOtuId(otuId: number | number[]) {
-      this.otuId = [otuId].flat()
-    },
-
-    checkUpdate() {
-      const filterStore = useFilterStore()
-      const observationStore = useObservationMatrixStore()
-      const observationMatrixId = this.observationMatrixId
-
-      if (this.shouldUpdate && typeof observationMatrixId === 'number') {
-        this.isLoading = true
-        observationStore
-          .requestInteractiveKey({
-            observationMatrixId: observationMatrixId,
-            params: filterStore.getFilterParams,
-            opt: {
-              refreshOnlyTaxa: this.refreshOnlyTaxa
-            }
-          })
-          .then((_) => (this.errorMessage = ''))
-          .catch((error) => (this.errorMessage = error.message))
-          .finally(() => (this.isLoading = false))
-      }
-    }
+const createInitialState = (): ISettings => ({
+  gridLayout: 'distinguish-layout-mode-1',
+  isLoading: false,
+  isRefreshing: false,
+  refreshOnlyTaxa: false,
+  shouldUpdate: true,
+  observationMatrixId: undefined,
+  otuId: [],
+  errorMessage: '',
+  apiConfig: {
+    baseURL: '',
+    projectId: undefined,
+    projectToken: undefined,
+    userToken: undefined
   }
 })
+
+export const createSettingsStore = (stores: StoreContainer) => {
+  const state = reactive<ISettings>(createInitialState())
+
+  const otuIdParam = computed<string>(() => state.otuId?.join('|') || '')
+
+  const setObservationMatrixId = (value: number): void => {
+    state.observationMatrixId = value
+  }
+
+  const setShouldUpdate = (value: boolean): void => {
+    state.shouldUpdate = value
+  }
+
+  const setRefreshOnlyTaxa = (value: boolean): void => {
+    state.refreshOnlyTaxa = value
+  }
+
+  const setAPIConfig = (config: IAPIConfiguration): void => {
+    state.apiConfig = config
+  }
+
+  const setOtuId = (otuId: number | number[]): void => {
+    state.otuId = [otuId].flat()
+  }
+
+  const setGridLayout = (value: string): void => {
+    state.gridLayout = value
+  }
+
+  const setErrorMessage = (value: string): void => {
+    state.errorMessage = value
+  }
+
+  const checkUpdate = (): void => {
+    const observationMatrixId = state.observationMatrixId
+
+    if (state.shouldUpdate && typeof observationMatrixId === 'number') {
+      state.isLoading = true
+      stores.observationMatrix
+        .requestInteractiveKey({
+          observationMatrixId: observationMatrixId,
+          params: stores.filter.getFilterParams,
+          opt: {
+            refreshOnlyTaxa: state.refreshOnlyTaxa
+          }
+        })
+        .then((_) => (state.errorMessage = ''))
+        .catch((error) => (state.errorMessage = error.message))
+        .finally(() => (state.isLoading = false))
+    }
+  }
+
+  const reset = (): void => {
+    Object.assign(state, createInitialState())
+  }
+
+  return {
+    state,
+
+    get getErrorMessage(): string {
+      return state.errorMessage
+    },
+
+    get getIsLoading(): boolean {
+      return state.isLoading
+    },
+
+    get getLayout(): string {
+      return state.gridLayout
+    },
+
+    get getRefreshOnlyTaxa(): boolean {
+      return state.refreshOnlyTaxa
+    },
+
+    get getShouldUpdate(): boolean {
+      return state.shouldUpdate
+    },
+
+    get getObservationMatrixId(): number | undefined {
+      return state.observationMatrixId
+    },
+
+    get getOtuId(): string {
+      return otuIdParam.value
+    },
+
+    get getAPIConfig(): IAPIConfiguration {
+      return state.apiConfig
+    },
+
+    setObservationMatrixId,
+    setShouldUpdate,
+    setRefreshOnlyTaxa,
+    setAPIConfig,
+    setOtuId,
+    setGridLayout,
+    setErrorMessage,
+    checkUpdate,
+    reset
+  }
+}
+
+export const useSettingsStore = (): StoreContainer['settings'] =>
+  useStores().settings

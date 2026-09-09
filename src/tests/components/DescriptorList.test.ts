@@ -1,4 +1,4 @@
-import { setup } from './../utils/initializeApp'
+import { setup } from '../utils/initializeApp'
 import { fireEvent, screen } from '@testing-library/vue'
 import userEvent from '@testing-library/user-event'
 import DescriptorList from '@/components/Panel/PanelDescriptors/DescriptorsList.vue'

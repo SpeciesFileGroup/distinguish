@@ -27,7 +27,7 @@ const sortDescriptors: WritableComputedRef<string | undefined> = computed({
   },
 
   set(value) {
-    store.$patch({ sorting: value })
+    store.setSorting(value)
   }
 })
 </script>

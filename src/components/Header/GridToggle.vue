@@ -22,8 +22,6 @@ const store = useSettingsStore()
 const gridLayout = computed<string>(() => store.getLayout)
 
 const setLayout = () => {
-  store.$patch({
-    gridLayout: LAYOUT_MODES[gridLayout.value]
-  })
+  store.setGridLayout(LAYOUT_MODES[gridLayout.value])
 }
 </script>

@@ -1,8 +1,9 @@
-import { useObservationMatrixStore } from '../../store/observationMatrices';
-import { IDescriptor } from '../../interfaces/IDescriptor';
-import { setActivePinia, createPinia } from 'pinia'
+import { createStores } from '@/store'
+import { IDescriptor } from '@/interfaces'
+import type { ObservationMatrixStore } from '@/store'
 import { 
   beforeAll, 
+  beforeEach,
   describe, 
   expect, 
   it
@@ -44,18 +45,16 @@ const mockDescriptorList: Array<IDescriptor> = [
 ]
 
 describe('Observation Matrices Store', () => {
-  let store: ReturnType<typeof useObservationMatrixStore>
+  let store: ObservationMatrixStore
 
   beforeAll(() => {
-    setActivePinia(createPinia())
-
-    store = useObservationMatrixStore()
+    store = createStores().observationMatrix
   })
 
   it ('set descriptors', () => {
     store.setDescriptors(mockDescriptorList)
 
-    expect(store.descriptors).toStrictEqual(mockDescriptorList)
+    expect(store.state.descriptors).toStrictEqual(mockDescriptorList)
   })
 
   it ('get descriptor by id', () => {
@@ -93,10 +92,19 @@ describe('Observation Matrices Store', () => {
     })
 
     it ('store set after load', async () => {
-      expect(store.descriptors.length).toBe(7)
-      expect(store.observationMatrix?.observationMatrixId).toBe(24)
-      expect(store.availableLanguages.length).toBe(2)
-      expect(store.availableKeywords.length).toBe(4)
+      expect(store.state.descriptors.length).toBe(7)
+      expect(store.state.observationMatrix?.observationMatrixId).toBe(24)
+      expect(store.state.availableLanguages.length).toBe(2)
+      expect(store.state.availableKeywords.length).toBe(4)
+    })
+
+    it ('resets to the initial state', () => {
+      store.reset()
+
+      expect(store.state.descriptors).toStrictEqual([])
+      expect(store.state.observationMatrix).toBeUndefined()
+      expect(store.state.remaining).toStrictEqual([])
+      expect(store.state.eliminated).toStrictEqual([])
     })
   })
 })

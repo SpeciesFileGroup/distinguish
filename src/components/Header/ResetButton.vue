@@ -2,7 +2,7 @@
   <VBtn
     color="primary"
     size="medium"
-    @click="store.$reset()"
+    @click="store.reset()"
   >
     Reset
   </VBtn>

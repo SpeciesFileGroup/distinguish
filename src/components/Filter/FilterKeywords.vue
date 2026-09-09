@@ -50,7 +50,7 @@ const keywordIds: WritableComputedRef<number[]> = computed({
   get: (): Array<number> => filterStore.getKeywordIds,
 
   set: (value) => {
-    filterStore.$patch({ keywordIds: value })
+    filterStore.setKeywordIds(value)
   }
 })
 </script>

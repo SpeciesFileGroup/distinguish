@@ -1,52 +1,40 @@
-import { render, screen } from '@testing-library/vue'
-import { createTestingPinia } from '@pinia/testing'
-import { useObservationMatrixStore } from '@/store/observationMatrices'
+import { setup } from '../utils/initializeApp'
+import { screen } from '@testing-library/vue'
 import TitleMatrixCitation from '@/components/Title/TitleMatrixCitation.vue'
 
 
 describe('Citation label component', () => {
-  let store: ReturnType<typeof useObservationMatrixStore>
-
-  beforeEach(() => {
-    render(TitleMatrixCitation, {
-      global: {
-        plugins: [createTestingPinia()]
-      }
-    })
-
-    store = useObservationMatrixStore()
-  })
-
   it('display citation label with author and year', async () => {
-    await store.$patch({
-      citation: {
-        author: 'Darth vader',
-        year: 1234
-      }
-    })
+    const { store } = setup(TitleMatrixCitation)
 
-    screen.getByText('Darth vader, 1234', { exact: true })
+    store.setObservationMatrixCitation({
+      cached_author_string: 'Darth vader',
+      cached: 'Darth vader, 1234',
+      year: 1234
+    } as any)
+
+    await screen.findByText('Darth vader, 1234', { exact: true })
   })
 
   it('display only author', async () => {
-    await store.$patch({
-      citation: {
-        author: 'Darth vader',
-        year: undefined
-      }
-    })
+    const { store } = setup(TitleMatrixCitation)
 
-    screen.getByText('Darth vader', { exact: true })
+    store.setObservationMatrixCitation({
+      cached_author_string: 'Darth vader',
+      cached: 'Darth vader'
+    } as any)
+
+    await screen.findByText('Darth vader', { exact: true })
   })
 
   it('display only year', async () => {
-    await store.$patch({ 
-      citation: {
-        author: '',
-        year: 1987
-      }
-    })
-    
-    screen.getByText('1987', { exact: true })
+    const { store } = setup(TitleMatrixCitation)
+
+    store.setObservationMatrixCitation({
+      cached: '1987',
+      year: 1987
+    } as any)
+
+    await screen.findByText('1987', { exact: true })
   })
 })

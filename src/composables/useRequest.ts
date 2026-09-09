@@ -1,15 +1,11 @@
-import { useSettingsStore } from '@/store/settings'
+import { IAPIConfiguration } from '@/interfaces'
 import axios from 'axios'
 
-export const useRequest = (instanceConfiguration: object = {}) => {
-  const store = useSettingsStore()
-  const { 
-    baseURL,
-    projectId,
-    projectToken,
-    userToken,
-    csrfToken
-  } = store.getAPIConfig
+export const useRequest = (
+  apiConfig: IAPIConfiguration,
+  instanceConfiguration: object = {}
+) => {
+  const { baseURL, projectId, projectToken, userToken, csrfToken } = apiConfig
 
   const axiosConfiguration: object = {
     baseURL: baseURL,
@@ -20,14 +16,14 @@ export const useRequest = (instanceConfiguration: object = {}) => {
     },
     ...instanceConfiguration
   }
-  
-  if (!projectToken || !(projectId && userToken) && csrfToken) {
+
+  if (!projectToken || (!(projectId && userToken) && csrfToken)) {
     const headers: object = { 'X-CSRF-Token': csrfToken }
 
     Object.assign(axiosConfiguration, { headers })
   }
 
-  return axios.create({ 
+  return axios.create({
     ...axiosConfiguration
   })
 }

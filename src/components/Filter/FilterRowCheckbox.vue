@@ -1,5 +1,5 @@
 <template>
-  <label v-if="store.rowIds.length">
+  <label v-if="store.getRowIds.length">
     <input
       v-model="rowFilter"
       type="checkbox"
@@ -15,6 +15,6 @@ const store = useFilterStore()
 
 const rowFilter: WritableComputedRef<boolean> = computed({
   get: () => store.getRowFilter,
-  set: (value) => store.$patch({ rowFilter: value })
+  set: (value) => store.setRowFilter(value)
 })
 </script>

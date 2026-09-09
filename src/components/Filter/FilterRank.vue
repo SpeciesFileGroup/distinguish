@@ -26,7 +26,7 @@ const rankSelected: WritableComputedRef<string | undefined> = computed({
   },
 
   set(value) {
-    store.$patch({ identifiedToRank: value })
+    store.setIdentifiedToRank(value)
   }
 })
 </script>

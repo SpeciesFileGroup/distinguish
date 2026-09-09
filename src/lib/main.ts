@@ -1,6 +1,5 @@
 import { IAPIConfiguration } from '@/interfaces/IAPIConfiguration'
 import { createApp, App } from 'vue'
-import { createPinia } from 'pinia'
 import VueInteractiveKey from '../App.vue'
 import '@/assets/stylesheets/main.scss'
 
@@ -73,7 +72,6 @@ function createInteractiveKey(
     apiConfig
   })
 
-  app.use(createPinia())
   app.mount(element)
 
   return app

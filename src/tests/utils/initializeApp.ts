@@ -1,22 +1,29 @@
-import { createTestingPinia } from '@pinia/testing'
-import { useObservationMatrixStore } from '@/store/observationMatrices'
-import { useFilterStore } from '@/store/filter'
-import { render } from '@testing-library/vue'
+import { render, RenderOptions } from '@testing-library/vue'
+import { createStores, STORES_KEY } from '@/store'
+import type { StoreContainer } from '@/store'
 
-export const setup = (vueComponent: unknown, options: object = {}) => {
+type Options = Omit<RenderOptions<any>, 'global'> & { global?: any }
+
+export const setup = (vueComponent: any, options: Options = {}) => {
+  const stores: StoreContainer = createStores()
+  const { global: globalOptions = {}, ...renderOptions } = options
+
   const utils = render(vueComponent, {
+    ...renderOptions,
     global: {
-      plugins: [createTestingPinia({ stubActions: false })]
-    },
-    ...options
+      ...globalOptions,
+      provide: {
+        ...(globalOptions.provide || {}),
+        [STORES_KEY as symbol]: stores
+      }
+    }
   })
-
-  const store: ReturnType<typeof useObservationMatrixStore> = useObservationMatrixStore()
-  const filterStore: ReturnType<typeof useFilterStore> = useFilterStore()
 
   return {
     ...utils,
-    store,
-    filterStore
+    stores,
+    store: stores.observationMatrix,
+    filterStore: stores.filter,
+    settingStore: stores.settings
   }
 }

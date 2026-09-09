@@ -1,31 +1,12 @@
-import { createTestingPinia } from '@pinia/testing'
-import { render, fireEvent } from '@testing-library/vue'
-import { useFilterStore } from '@/store/filter';
-import { useObservationMatrixStore } from '@/store/observationMatrices'
+import { setup } from '../utils/initializeApp'
+import { fireEvent } from '@testing-library/vue'
 import userEvent from '@testing-library/user-event'
 import FilterKeywords from '@/components/Filter/FilterKeywords.vue'
 
 
 describe('Filter keywords', () => {
-  const setup = () => {
-    const utils = render(FilterKeywords, {
-      global: {
-        plugins: [createTestingPinia({ stubActions: false })]
-      }
-    })
-
-    const store: ReturnType<typeof useObservationMatrixStore> = useObservationMatrixStore()
-    const filterStore: ReturnType<typeof useFilterStore> = useFilterStore()
-    
-    return {
-      ...utils,
-      store,
-      filterStore
-    }
-  }
-
   it('disable button if there are no keywords ', async () => {
-    const { container } = setup() 
+    const { container } = setup(FilterKeywords)
     const openButton = container.querySelector('button') as HTMLButtonElement
 
     await userEvent.click(openButton)
@@ -38,7 +19,7 @@ describe('Filter keywords', () => {
       store,
       filterStore,
       container,
-    } = setup()
+    } = setup(FilterKeywords)
   
     const openButton = container.querySelector('button') as HTMLButtonElement
 

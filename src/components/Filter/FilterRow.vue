@@ -89,7 +89,7 @@ const rowIds: WritableComputedRef<number[]> = computed({
   get: (): Array<number> => filterStore.getRowIds,
 
   set: (value: Array<number>) => {
-    filterStore.$patch({ rowIds: value })
+    filterStore.setRowIds(value)
   }
 })
 
@@ -97,7 +97,7 @@ watch(isModalVisible, (newValue) => {
   settingStore.setShouldUpdate(!newValue)
 
   if (!newValue && hasChanged.value) {
-    filterStore.rowFilter = true
+    filterStore.setRowFilter(true)
     settingStore.checkUpdate()
   }
 
